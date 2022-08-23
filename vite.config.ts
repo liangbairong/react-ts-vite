@@ -5,7 +5,7 @@ import react from '@vitejs/plugin-react'
 import { viteMockServe } from 'vite-plugin-mock';
 import { minifyHtml, injectHtml } from 'vite-plugin-html'
 
-import importToCDN, { autoComplete } from 'vite-plugin-cdn-import'
+// import importToCDN, { autoComplete } from 'vite-plugin-cdn-import'
 
 const imageHttpBase = '/assets/';
 let proxy = {}
@@ -72,7 +72,7 @@ export default defineConfig({
   plugins: [
     react(),
     legacy({
-      targets: ['chrome 52'],
+      targets: ['ie >= 11'],
       additionalLegacyPolyfills: ['regenerator-runtime/runtime'],
       polyfills: ['es.promise.finally', 'es/map', 'es/set'],
       modernPolyfills: ['es.promise.finally']

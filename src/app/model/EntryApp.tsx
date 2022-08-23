@@ -64,11 +64,11 @@ const I18nEntry = observer((props: I18nEntryProps): JSX.Element => {
 
 const EntryApp = (): JSX.Element => (
     <BrowserRouter>
-        <I18nEntry>
+        {/*<I18nEntry>*/}
             <ErrorBoundary>
                 <Routes />
             </ErrorBoundary>
-        </I18nEntry>
+        {/*</I18nEntry>*/}
     </BrowserRouter>
 );
 

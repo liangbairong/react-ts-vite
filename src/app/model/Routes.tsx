@@ -14,53 +14,24 @@ import { AppContext } from '../context';
 
 import { useStore } from '../hooks';
 
-// import '../scss/layout.scss';
-
-/* Webview */
-const Webview = lazy(() => import('../pages/webview/index'));
-
-/* 直播间挂件 */
-const Pendant = lazy(() => import('../pages/pendant'));
-
-/* 榜单弹窗 */
-const Dialog = lazy(() => import('../pages/dialog'));
 
 /* 页面 */
-// const Index = lazy(() => import('../pages/index/index'));
+const Index = lazy(() => import('../pages/index/index'));
 
 const routesConfig = [
-    // {
-    //     path: '/',
-    //     component: Index,
-    //     exact: true,
-    //     title: 'Loveandexpressionactivity',
-    //     width: 750,
-    // },
-    // {
-    //     path: '/home',
-    //     component: Index,
-    //     exact: true,
-    //     title: 'Loveandexpressionactivity',
-    //     width: 750,
-    // },
     {
-        path: '/pendant',
-        component: Pendant,
-        title: 'Loveandexpressionactivity',
-        fallback: false,
-    },
-    {
-        path: '/dialog',
-        component: Dialog,
-        title: 'Loveandexpressionactivity',
-        width: 750,
-        fallback: false,
-    },
-    {
-        path: '/webview',
-        component: Webview,
+        path: '/',
+        component: Index,
         exact: true,
         title: 'Loveandexpressionactivity',
+        width: 750,
+    },
+    {
+        path: '/home',
+        component: Index,
+        exact: true,
+        title: 'Loveandexpressionactivity',
+        width: 750,
     },
 ];
 

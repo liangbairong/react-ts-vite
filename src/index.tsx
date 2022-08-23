@@ -4,6 +4,8 @@ import ReactDOM from 'react-dom';
 import 'elelive-ui/es/index-all.min.css'
 import Utils from 'elelive-ui/es/Components/Utils';
 import App from './app/app';
+//兼容ios11 10
+import 'globalthis/auto';
 
 Utils.supportsWebp(window).then((res) => {
     if (res) {
@@ -18,4 +20,4 @@ Utils.supportsWebp(window).then((res) => {
 //     new VConsole();
 // }
 
-ReactDOM.render(<App />, document.getElementById('app'));
+ReactDOM.render(<App/>, document.getElementById('app'));

@@ -61,7 +61,10 @@ const App: React.FC<IAppProps> = (): JSX.Element => {
 
     return (
         <AppContext.Provider value={appStore}>
-            <EntryApp />
+            <div>
+                aaaww
+            </div>
+            {/*<EntryApp />*/}
         </AppContext.Provider>
     );
 };
