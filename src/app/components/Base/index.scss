@@ -1,0 +1,592 @@
+//.Dialog-box{
+//  //width: 546px;
+//  //height: 715px;
+//  //  padding: 0 26px 52px;
+//  //  box-sizing: border-box;
+//  background: url("../../../assets/images/common/page-dialog-bg.png") no-repeat;
+//  background-size: 100% 100%;
+//
+//  .Dialog-title{
+//      box-sizing: border-box;
+//      min-height: 93px;
+//      padding-top: 43px;
+//      padding-bottom: 10px;
+//      color: $white;
+//      font-weight: bold;
+//      font-size: 28px;
+//      line-height: 1.2;
+//      text-align: center;
+//  }
+//
+//  .dialog-content{
+//    @extend .fcc;
+//  }
+//}
+//
+//.ele-dialog-content{
+//  .ele-dialog-close{
+//    bottom: -90px;
+//    width: 60px;
+//    height: 60px;
+//    background-color: transparent;
+//    background-image: url('../../../assets/images/common/close.png');
+//    background-size: cover;
+//  }
+//}
+//
+//.prize-item-content{
+//    width: 150px;
+//    margin-bottom: 40px;
+//    font-weight: bold;
+//    line-height: 1.2;
+//    text-align: center;
+//
+//  .prize-item-content-img{
+//    position: relative;
+//    width: 130px;
+//    height: 130px;
+//    margin: 0 auto;
+//      background: url("../../../assets/images/supply/prize-item-img-bg.png") no-repeat;
+//      background-size: 100% 100%;
+//      border-radius: 100%;
+//
+//    @extend .fcc;
+//
+//    .prize-item-content-img-inner{
+//        width: 130px;
+//        height: 130px;
+//        border-radius: 100%;
+//    }
+//  }
+//
+//    .prize-item-type {
+//        position: relative;
+//        width: 120px;
+//        height: 26px;
+//        margin: -11px auto 0;
+//        color: #397B78;
+//        font-size: 18px;
+//        background: url("../../../assets/images/supply/prize-item-type-bg.png") no-repeat;
+//        background-size: 100% 100%;
+//
+//        @extend .fcc;
+//    }
+//
+//  .prize-item-num{
+//    @extend .fcc;
+//    position: absolute;
+//    top: -6px;
+//    right: -26px;
+//    width: 62px;
+//    height: 36px;
+//    color: $textHightColor;
+//    font-weight: bold;
+//    font-size: 20px;
+//    //background: url("../../../assets/images/index/fortuneKoi/koi-prize-num-bg.png") no-repeat;
+//    background-size: 100% 100%;
+//  }
+//
+//  .prize-item-name{
+//    //max-width: 90%;
+//    margin: 8.6px auto 0;
+//      color: #397B78;
+//      font-size: 24px;
+//  }
+//
+//  .prize-item-value{
+//    margin: 3.6px auto 0;
+//      color: #397B78;
+//      font-weight: normal;
+//    font-size: 20px;
+//
+//      .i18n-active{
+//          color: #695AFF;
+//          font-weight: bold;
+//      }
+//
+//  }
+//
+//    .prize-item-time{
+//        margin: 4.2px auto 0;
+//        color: #509F9B;
+//        font-weight: normal;
+//        font-size: 18px;
+//    }
+//
+//}
+//
+//.skeleton-item {
+//  display: flex;
+//  justify-content: space-between;
+//  width: 100%;
+//  height: 70px;
+//  margin: .20rem 0;
+//  padding: 16px 0;
+//
+//  .skeleton-avatar {
+//    width: 70px;
+//    height: 70px;
+//
+//    @extend .fcc
+//  }
+//
+//  .skeleton-content {
+//    flex: 1;
+//  }
+//}
+//
+//.titleBox-main {
+//    position: relative;
+//    box-sizing: border-box;
+//    width: 710px;
+//    margin: auto;
+//    padding: 6px;
+//
+//    .titleBox-bg {
+//        position: absolute;
+//        top: 30px;
+//        left: 0;
+//        width: 100%;
+//        height: calc(100% - 40px);
+//        background-image: url('../../../assets/images/common/box-center.png');
+//        background-size: 100% 100%;
+//    }
+//
+//    &::after {
+//        position: absolute;
+//        top: 0;
+//        left: 0;
+//        z-index: 1;
+//        display: block;
+//        width: 100%;
+//        height: 40px;
+//        background-image: url('../../../assets/images/common/box-top.png');
+//        background-size: 100% auto;
+//        content: '';
+//    }
+//
+//    &::before {
+//        position: absolute;
+//        bottom: 0;
+//        left: 0;
+//        z-index: 1;
+//        display: block;
+//        width: 100%;
+//        height: 40px;
+//        background-image: url('../../../assets/images/common/box-bottom.png');
+//        background-size: 100% auto;
+//        content: '';
+//    }
+//
+//    .titleBox-title {
+//        position: absolute;
+//        top: 0;
+//        left: 50%;
+//        z-index: 2;
+//        width: 506px;
+//        height: 99px;
+//        font-weight: 500;
+//        font-size: 26px;
+//        line-height: 99px;
+//        text-align: center;
+//        text-shadow: 0 1px 2px rgba(213, 46, 132, 0.9);
+//        background: url("../../../assets/images/common/box-title-bg.png") no-repeat;
+//        background-size: 100% 100%;
+//        transform: translateX(-50%) translateY(-50%);
+//    }
+//
+//    .titleBox-children {
+//        position: relative;
+//        z-index: 3;
+//    }
+//
+//    .titleBox-hh {
+//        position: absolute;
+//        right: 5px;
+//        bottom: 2px;
+//        z-index: 2;
+//        width: 70px;
+//        line-height: 0;
+//    }
+//}
+//
+//.activity-status {
+//    margin-top: 44px;
+//    margin-bottom: 23px;
+//    color: #C32892;
+//    line-height: 23px;
+//
+//    .activity-status-time {
+//        color: #F27500;
+//    }
+//}
+//
+//.prizeItem-box {
+//    text-align: center;
+//
+//    .prizeItem-img {
+//        position: relative;
+//        width: 133px;
+//        height: 133px;
+//        margin: auto;
+//        overflow: hidden;
+//        background: url("../../../assets/images/grandCeremonyDialog/prize.png");
+//        background-size: 100% 100%;
+//
+//        img{
+//            position: absolute;
+//            top: 0;
+//            right: 0;
+//            bottom: 0;
+//            left: 0;
+//            max-width: 110px;
+//            max-height: 110px;
+//            margin: auto;
+//        }
+//
+//        .prizeItem-type {
+//            @extend .ellipsis;
+//            position: absolute;
+//            bottom: 7px;left: 7px;
+//            box-sizing: border-box;
+//            width: calc(100% - 14px);
+//            height: 20px;
+//            padding:0 10px;
+//            color: #fff;
+//            font-weight: 400;
+//            font-size: 16px;
+//            line-height: 20px;
+//            text-align: center;
+//            background: rgba(40, 19, 93, 0.5);
+//        }
+//    }
+//
+//
+//
+//    .prizeItem-name {
+//        //padding: 5px 0;
+//        margin-top: 5px;
+//        padding-top: 5px;
+//        color: #FFF;
+//        font-weight: 400;
+//        font-size: 22px;
+//        line-height: 26px;
+//    }
+//
+//    .prizeItem-det{
+//        color: #FEFC6D;
+//        font-weight: 400;
+//        font-size: 18px;
+//    }
+//
+//}
+//
+//.date-gift-main {
+//    position: relative;
+//    z-index: 1;
+//    overflow: hidden;
+//
+//    .date-gift-ul {
+//        display: flex;
+//        width: 650px;  height: 40px;
+//        margin: auto;
+//    }
+//
+//    .date-gift-li {
+//        position: relative;
+//        flex: 1;
+//        text-align: center;
+//
+//        span {
+//            @extend .acc;
+//            z-index: 2;
+//            display: inline-block;
+//            width: 84px;
+//            height: 40px;
+//            color: rgba(255, 255, 255, 0.3);
+//            font-weight: bold;
+//            font-size: 22px;
+//            line-height: 40px;
+//            background: #11135F;
+//            border-radius: 20px;
+//
+//
+//            .check {
+//                position: relative;
+//                z-index: 3;
+//                display: inline-block;
+//                width: 40px;
+//                height: 40px;
+//            }
+//
+//            .check::after {
+//                position: absolute;
+//                top:0;
+//                left: 50%;
+//                width: 50%;
+//                height: 25%;
+//                background: transparent;
+//                border: 5px solid #fff;
+//                border-top: none;
+//                border-right: none;
+//                border-radius: 1px;
+//                transform: rotate(-45deg) translateX(-50%);
+//                content: "";
+//            }
+//        }
+//
+//        &::after{
+//            position: absolute;
+//            top: 50%;
+//            right: 50%;
+//            display: block;
+//            width: 100%;
+//            height: 10px;
+//            background: #11135F;
+//            transform: translateY(-50%);
+//            content: '';
+//        }
+//        //&:before{
+//        //  content: '';
+//        //  display: block;
+//        //  width: 50%;
+//        //  position: absolute;
+//        //  left: 0;
+//        //  top: 50%;
+//        //  height: 1px;
+//        //  background: #ccc;
+//        //}
+//
+//        &:nth-child(1)::after{
+//            display: none;
+//        }
+//        //&:nth-last-child(1):after{
+//        //  display: none;
+//        //}
+//    }
+//
+//    .date-gift-li-inpast{
+//        span{
+//            color: #fff;
+//            background:url("../../../assets/images/grandCeremonyDialog/daybtn.png");
+//            background-size: 100% 100%;
+//            filter: brightness(60%);
+//        }
+//
+//        &::after{
+//            background: #FFC852;
+//        }
+//    }
+//
+//
+//    .date-gift-li-inpast-no{
+//        span{
+//            color: #fff;
+//            background:url("../../../assets/images/grandCeremonyDialog/daybtn.png");
+//            background-size: 100% 100%;
+//            filter: grayscale(70%);
+//        }
+//
+//        &::after{
+//            background: #FFC852;
+//        }
+//    }
+//
+//    .date-gift-li-action {
+//        span{
+//            color: #fff;
+//            background:url("../../../assets/images/grandCeremonyDialog/daybtn.png");
+//            background-size: 100% 100%;
+//            filter:none;
+//        }
+//        //&:before{
+//        //  background: #FFC852;
+//        //}
+//        //&:after{
+//        //  background: #FFC852;
+//        //}
+//    }
+//
+//
+//    .date-gift-content{
+//        margin-top: 10px;
+//        margin-bottom: 20px;
+//        text-align: center;
+//
+//        .date-gift-content-li{
+//            display: inline-block;
+//            width: 214px;
+//            height: 302px;
+//            margin-top: 20px;
+//            vertical-align: top;
+//            background: url("../../../assets/images/grandCeremonyDialog/beam1.png");
+//            background-size: 100% 100%;
+//        }
+//    }
+//}
+//
+//.level-main {
+//    position: relative;
+//    z-index: 1;
+//    // height: 40px;
+//    margin-top: 30px;
+//    overflow: hidden;
+//
+//    .level-ul {
+//        display: flex;
+//        align-items: center;
+//        height: 43px;
+//    }
+//
+//    .level-li {
+//        position: relative;
+//        flex: 1;
+//        text-align: center;
+//
+//        span {
+//            @extend .acc;
+//            z-index: 2;
+//            display: inline-block;
+//            width: 90px;
+//            height: 40px;
+//            color: rgba(255, 255, 255, 0.3);
+//            //font-weight: 600;
+//            font-weight: bold;
+//            font-size: 22px;
+//            line-height: 40px;
+//        }
+//
+//        &::after{
+//            position: absolute;
+//            top: 50%;
+//            right: -9px;
+//            display: block;
+//            width: 18px;
+//            height: 13px;
+//            background: url("../../../assets/images/grandCeremonyDialog/xgzl_rank_arrow.png");
+//            background-size: 100% 100%;
+//            transform: translateY(-50%);
+//            content: '';
+//        }
+//        // &:before{
+//        //   content: '';
+//        //   display: block;
+//        //   width: 50%;
+//        //   position: absolute;
+//        //   left: 0;
+//        //   top: 50%;
+//        //   height: 1px;
+//        //   background: #ccc;
+//        // }
+//
+//        &:nth-child(1)::before{
+//            display: none;
+//        }
+//
+//        &:nth-last-child(1)::after{
+//            display: none;
+//        }
+//    }
+//
+//    .level-li-on {
+//        span{
+//            color: #fff;
+//        }
+//    }
+//
+//    .level-li-action {
+//        span{
+//            color: #fff;
+//            background: url("../../../assets/images/grandCeremonyDialog/xgzl_rank_btn_selected.png");
+//            background-size: 100% 100%;
+//        }
+//    }
+//}
+//
+//.task-reward-item {
+//    .reward-img-wrap {
+//        position: relative;
+//        display: flex;
+//        align-items: center;
+//        justify-content: center;
+//        width: 188px;
+//        height: 175px;
+//        margin: 0 auto;
+//        background-image: url("../../../assets/images/supply/aixin-bg.png");
+//        background-repeat: no-repeat;
+//        background-size: 100% 100%;
+//
+//
+//
+//        .reward-img {
+//            width: 50%;
+//        }
+//
+//        .reward-num {
+//            position: absolute;
+//            bottom: 0;
+//            padding: 0 20px;
+//            color: #fff;
+//            font-size: 22px;
+//            line-height: 26px;
+//            white-space: nowrap;
+//            background-color: #DB80FD;
+//            border-radius: 13px;
+//        }
+//    }
+//
+//    .reward-name {
+//        margin-top: 15px;
+//        margin-bottom: 8px;
+//        font-size: 22px;
+//        line-height: 22px;
+//    }
+//
+//    .reward-type {
+//        margin-bottom: 35px;
+//        font-size: 20px;
+//        line-height: 20px;
+//    }
+//}
+//
+//.base-anchor {
+//    display: flex;
+//    box-sizing: border-box;
+//    height: 172px;
+//    margin: 24px 26px 38px;
+//    padding: 30px 20px;
+//    background: rgba(247, 205, 254, 0.4);
+//    border-radius: 10px;
+//    box-shadow: 0 0 8px 1px rgba(246, 107, 167, 0.23) inset;
+//
+//    .anchor-img-wrap {
+//        box-sizing: border-box;
+//        width: 112px;
+//        height: 112px;
+//        background: #FDA5CF;
+//        border: 2px solid #FCC4FF;
+//        border-radius: 50%;
+//
+//        .anchor-img {
+//            width: 100%;
+//            height: 100%;
+//            border-radius: 50%;
+//        }
+//
+//        .anchor-no {
+//            display: block;
+//            margin: 27px auto 0;
+//        }
+//    }
+//
+//    .anchor-info {
+//        margin-left: 20px;
+//        font-weight: 500;
+//        font-size: 30px;
+//        text-align: left;
+//
+//        .anchor-name {
+//            line-height: 1;
+//        }
+//    }
+//}

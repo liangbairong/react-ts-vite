@@ -1,0 +1,313 @@
+
+
+.sweetRank-user {
+    padding: 5px 0 7px;
+    box-sizing: border-box;
+    margin-top: -1px;
+    margin-bottom: 133px;
+    background: #FFF2F9;
+    border: 4px solid #EF9ED2;
+    box-shadow: inset 0 0 8px rgb(239 174 214 / 80%), inset 0 0 14px rgb(235 153 203 / 80%);
+
+    .titleBox-main {
+        width: 700px;
+        padding: 0;
+    }
+
+    //.sweetRank-titleBox {
+    //  margin: 0;
+    //  box-sizing: border-box;
+    //  width: 100%;
+    //  background: #FFEDF1;
+    //  box-shadow: inset 0px 0px 8px rgba(186, 5, 77, 0.4), inset 0px 0px 14px rgba(245, 104, 139, 0.8);
+    //  border-radius: 0px 0px 10px 10px;
+    //  &::after,
+    //  &::before {
+    //    display: none
+    //  }
+    //}
+
+    .sweetRank-titleBox {
+
+        margin: 0;
+        box-sizing: border-box;
+        width: 100%;
+    }
+
+
+    .sweetRank-main {
+        padding-top: 32px;
+        margin-top: 0;
+
+        .sweetRank-anchor {
+            padding: 45px 0;
+            @include bg('@Assets', 'sweetRank/top-bg', 'png');
+            background-size: 100% 100%;
+            width: 666px;
+            margin: auto;
+
+            .sweetRank-anchor-ul {
+                padding: 0 80px;
+                margin-top: 20px;
+                .anchorHead-box .anchorHead-name{
+                    font-size: 30px;
+                    font-weight: 600;
+                    color: #FF9B3E;
+                }
+            }
+
+            .sweetRank-anchor-title {
+                text-align: center;
+                line-height: 27px;
+                margin-bottom: 2px;
+
+                font-size: 26px;
+                font-weight: 600;
+                color: #FF9B3E;
+            }
+
+            .sweetRank-anchor-min-font {
+                font-size: 22px;
+                color: #FFCFFA;
+                line-height: 26px;
+                margin-top: 5px;
+            }
+        }
+
+        .tanabataDate-row {
+            margin-top: 48px;
+        }
+
+        .sweetRank-rank-head {
+            line-height: 84px;
+            min-height: 84px;
+            color: #C32892;
+            font-weight: 400;
+            font-size: 24px;
+            padding: 0 15px;
+            position: relative;
+            text-indent: 7px;
+
+            small {
+                color: #F27500;
+                font-size: 24px
+            }
+
+            .sweetRank-refresh-btn {
+                @extend .arc;
+                right: 24px;
+                width: 40px;
+                height: 40px;
+                line-height: 0;
+            }
+
+            .sweetRank-refresh-btn-rotates {
+                img {
+                    animation: rotates 5s linear infinite;
+                }
+            }
+
+
+            @keyframes rotates {
+                0% {
+                    transform: rotate(0);
+                }
+                100% {
+                    transform: rotate(360deg);
+                }
+            }
+        }
+
+
+        .sweetRank-wb {
+            text-align: center;
+            color: #F07ABA;
+            padding: 13px 0 10px 0;
+            font-size: 24px;
+            line-height: 38px;
+
+            &.wb-user {
+                padding: 2px 0 48px 0;
+            }
+        }
+    }
+
+
+    .rank {
+        width: 99.8%;
+        margin: auto;
+        overflow: hidden;
+
+        .rank-head {
+            margin-bottom: 0;
+            @include bg('@Assets', 'sweetRank/rank_head', 'png');
+            background-size: 100% 100%;
+            height: 68px;
+            font-size: 24px;
+            line-height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            color: #C32892;
+
+            li {
+                line-height: 30px;
+                span{
+                    color: #C32892;
+                }
+            }
+        }
+    }
+
+    .rank-head, .rank-li {
+        @extend .fcc;
+        //background: #FFD7E2;
+        background: #f7dded;
+        margin-bottom: 8px;
+        padding: 15px 0;
+
+        .rank-index {
+            width: 102px;
+            height: 51px;
+            line-height: 51px;
+            position: relative;
+            text-align: center;
+            margin: auto;
+
+            .rank-index-img {
+                width: 100%;
+                height: 100%;
+                position: absolute;
+                left: 0;
+                top: 0;
+            }
+
+            span {
+                position: relative;
+                z-index: 1;
+                font-size: 30px;
+                color: #C32892;
+            }
+        }
+
+
+        li{
+            .RankHead {
+                .RankHead-con {
+                    .RankHead-con-name {
+                        color: #C32892;
+                    }
+
+                }
+            }
+        }
+        li:nth-child(1) {
+            width: 160px;
+            text-align: center;
+        }
+
+        li:nth-child(2) {
+            flex: 1;
+        }
+
+        li:nth-child(3) {
+            width: 200px;
+            text-align: right;
+            padding: 0 20px;
+            padding-right: 50px;
+            color: #C32892;
+        }
+    }
+    .rank-li-action {
+        background-color: transparent;
+        @include bg('@Assets', 'sweetRank/q3', 'png');
+        background-size: 100% 100%;
+    }
+
+    .rank-content {
+        .rank-li:nth-child(1),
+        .rank-li:nth-child(2),
+        .rank-li:nth-child(3) {
+            li {
+                color: #ffffff;
+            }
+
+            .rank-index {
+                span {
+                    color: #ffffff;
+                }
+            }
+
+            .RankHead {
+                .RankHead-con {
+                    .RankHead-con-name {
+                        color: #ffffff;
+                    }
+
+                    .RankHead-con-value {
+                        color: #FFCFFA;
+                    }
+                }
+            }
+        }
+    }
+
+    .my-rank {
+        background: linear-gradient(0deg, #6F8AFF 0%, #81D4FF 100%);
+        padding: 20px 20px;
+        margin-bottom: 0;
+
+        .rank-index {
+            span {
+                color: #ffffff;
+            }
+        }
+
+      li{
+          .RankHead {
+              .RankHead-con {
+                  .RankHead-con-name {
+                      color: #ffffff;
+                  }
+
+                  .RankHead-con-value {
+                      color: #C4E2FF;
+                  }
+              }
+
+              .RankHead-img {
+                  &::after {
+                      background: #0070D2;
+                  }
+              }
+          }
+      }
+
+
+    }
+
+    .myRank-fixed-bottom-height {
+        height: 140px;
+    }
+
+
+    .activityNotStarted-class {
+        margin: 100px 0;
+    }
+
+
+    .footer-suer {
+        font-size: 20px;
+        font-weight: 400;
+        color: #C4E2FF;
+
+        p {
+            font-size: 24px;
+            color: #FFFFFF;
+        }
+        .i18n-active{
+            color: #C4E2FF;
+        }
+    }
+
+}

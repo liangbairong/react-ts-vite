@@ -1,0 +1,244 @@
+.lucky {
+    padding-bottom: 21px;
+
+    .luckyWraper {
+        margin: 36px auto 0;
+    }
+
+    .luckyRecord {
+        @extend .listsBg;
+        border-radius: 20px;
+
+        .luckyRecordTitle {
+            padding: 20px 0;
+            font-size: 26px;
+            line-height: 34px;
+            color: $titleColor;
+            text-align: center;
+
+            &:before {
+                content: '';
+                display: inline-block;
+                width: 23px;
+                height: 18px;
+                margin-right: 18px;
+                background: url("../../../../../assets/images/lucky/arrow_left.png");
+            }
+
+            &:after {
+                content: '';
+                display: inline-block;
+                width: 23px;
+                height: 18px;
+                margin-left: 18px;
+                background: url("../../../../../assets/images/lucky/arrow_right.png");
+            }
+
+            > span {
+                display: inline-block;
+                font-size: 26px;
+                line-height: 1;
+                font-weight: bold;
+                color: #FFFCE8;
+                position: relative;
+
+                //background: linear-gradient(0deg, #FFFCE8 0.146484375%, #FFD3B6 100%);
+                //-webkit-background-clip: text;
+                //-webkit-text-fill-color: transparent;
+
+                &::before {
+                    @extend .fcc;
+                    content: attr(data-text);
+                    width: 100%;
+                    height: 100%;
+                    mask: linear-gradient(to bottom, #FFD3B6 0, transparent 100%);
+                    position: absolute;
+                    left: 50%;
+                    top: 50%;
+                    transform: translate(-50%, -50%);
+                    color: #FFD3B6;
+                }
+            }
+        }
+
+        .luckyRecordItem {
+            @extend .listsBoxSimple;
+            margin: 16px auto 0;
+            padding: 12px 0 38px;
+            border-radius: 10px;
+
+            .luckyRecordDate {
+                @extend .fcc;
+                font-size: 22px;
+                color: $titleColor;
+                line-height: 44px;
+                text-align: center;
+
+                &:before {
+                    content: '';
+                    display: inline-block;
+                    width: 50px;
+                    height: 1px;
+                    background: $titleColor;
+                    margin-right: 10px;
+                }
+
+                &:after {
+                    content: '';
+                    display: inline-block;
+                    width: 50px;
+                    height: 1px;
+                    background: $titleColor;
+                    margin-left: 10px;
+                }
+            }
+
+            .luckyRecordBox {
+                @extend .fcc;
+                justify-content: space-around;
+
+                .luckyRecordAnchor {
+                    @extend .fcc;
+                    width: 200px;
+                    flex-direction: column;
+                    margin: 10px auto 0;
+                    text-align: center;
+
+                    .luckyRecordAvatar {
+                        @extend .fcc;
+                        width: 120px;
+                        height: 120px;
+                        padding: 2px;
+                        position: relative;
+                        background: linear-gradient(90deg, #D37EFF, #9263FF);
+                        box-sizing: border-box;
+                        border-radius: 50%;
+
+                        > img {
+                            width: 116px;
+                            height: 116px;
+                            border-radius: 50%;
+                        }
+
+                        > span {
+                            min-width: 80px;
+                            height: 26px;
+                            padding: 0 20px;
+                            position: absolute;
+                            left: 50%;
+                            bottom: 0;
+                            transform: translate(-50%, 0);
+                            background: linear-gradient(-90deg, #fe009f 1%, #9263ff 99%);
+                            border-radius: 13px;
+                            font-size: 22px;
+                            line-height: 26px;
+                            color: $white;
+                            text-align: center;
+                            box-sizing: border-box;
+                            white-space: nowrap;
+                        }
+                    }
+
+                    .luckyRecordName {
+                        width: 100%;
+                        margin: 10px auto 0;
+                        font-size: 22px;
+                        line-height: 30px;
+                        color: $textColor;
+                        font-weight: bold;
+                        text-overflow: ellipsis;
+                        overflow: hidden;
+                        white-space: nowrap;
+                    }
+                }
+            }
+        }
+    }
+
+    .luckyRecordFooter {
+        margin: 22px auto 0;
+        font-size: 20px;
+        color: $titleColor;
+        line-height: 44px;
+        text-align: center;
+    }
+
+    .luckyDetail {
+        @extend .listsBg;
+        border-radius: 20px;
+        text-align: center;
+
+        .luckyDetailBox {
+            @extend .listsBox;
+            padding: 36px 0 42px;
+
+            .luckyDetailInfo {
+                padding: 0 36px;
+                font-size: 24px;
+                font-weight: bold;
+                color: $titleColor;
+                line-height: 44px;
+            }
+
+            .luckyDetailAvatar {
+                @extend .fcc;
+                width: 170px;
+                height: 170px;
+                margin: 20px auto 0;
+                position: relative;
+                //background: url('../../../../../assets/images/task/item_bg.png');
+                background-image: linear-gradient(90deg, #D37EFF, #9263FF);
+                border-radius: 50%;
+                box-sizing: border-box;
+
+                &:before {
+                    content: '';
+                    width: 166px;
+                    height: 166px;
+                    position: absolute;
+                    left: 50%;
+                    top: 50%;
+                    transform: translate(-50%,-50%);
+                    background: #FFC8E6;
+                    border-radius: 50%;
+                }
+
+                > img {
+                    width: 128px;
+                    height: 128px;
+                }
+
+                > span {
+                    min-width: 80px;
+                    height: 26px;
+                    padding: 0 20px;
+                    position: absolute;
+                    left: 50%;
+                    top: 146px;
+                    transform: translate(-50%, 0);
+                    background: linear-gradient(-90deg, #fe009f 1%, #9263ff 99%);
+                    border-radius: 13px;
+                    font-size: 22px;
+                    line-height: 26px;
+                    color: $white;
+                    text-align: center;
+                    box-sizing: border-box;
+                }
+            }
+
+            .luckyDetailName {
+                margin-top: 10px;
+                font-size: 22px;
+                font-weight: bold;
+                color: $textColor;
+                line-height: 30px;
+            }
+
+            .luckyDetailValue {
+                font-size: 20px;
+                color: $textColor;
+                line-height: 30px;
+            }
+        }
+    }
+}

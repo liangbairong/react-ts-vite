@@ -1,0 +1,207 @@
+/*
+Document: base.css
+Author: wilson
+Description:base CSS
+*/
+
+//html{ font-size: calc(100vw / 7.5); }
+html,
+body {
+    text-size-adjust: none;
+}
+
+/***************************  {CSS Reset}  *****************************/
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+font,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td {
+    /* background: transparent; */
+    margin: 0;
+    padding: 0;
+    vertical-align: baseline;
+    border: 0;
+    text-size-adjust: none;
+}
+
+body {
+    font-size: 24px;
+    font-family: PingFang SC, 'Helvetica Neue', Helvetica, 'PingFang SC', 'Hiragino Sans GB',
+        'Microsoft YaHei', '\5FAE\8F6F\96C5\9ED1', SimSun, sans-serif;
+    line-height: 1.5;
+    overflow-scrolling: touch;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+object,
+:focus {
+    outline: none;
+}
+
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section /* HTML 5 */ {
+    display: block;
+}
+
+blockquote,
+q {
+    quotes: none;
+}
+
+blockquote::before,
+blockquote::after,
+q::before,
+q::after {
+    content: '';
+}
+
+a img {
+    border: none;
+}
+
+input,
+button,
+textarea,
+select,
+optgroup,
+option {
+    font: inherit;
+    font-size: 100%;
+}
+
+li {
+    list-style: none;
+}
+
+img,
+video,
+div,
+p {
+    //-webkit-touch-callout: none;
+    //pointer-events: none;
+    text-size-adjust: none;
+    -webkit-touch-callout: none; /* iOS Safari */
+    user-select: none; /* Chrome/Safari/Opera */
+}
+
+/***************************  {Common CSS Class}  *****************************/
+.al {
+    text-align: left;
+}
+
+.ar {
+    text-align: right;
+}
+
+.ac {
+    text-align: center;
+}
+
+.lc {
+    margin: 0 auto;
+}
+
+.fl,
+.il .fl {
+    float: left;
+}
+
+.fr,
+.il .fr {
+    float: right;
+}
+
+.clear,
+.il .clear {
+    float: none;
+    clear: both;
+}
+
+.rel {
+    position: relative;
+}
+
+.abs {
+    position: absolute;
+}
+
+.il {
+    list-style: none;
+}
+
+.il li {
+    float: left;
+}
+
+// 去除点击阴影
+* {
+    //-webkit-tap-highlight-color: rgba(0, 0, 0, 0); /* For some Androids */
+}
+
+* {
+    -webkit-tap-highlight-color: transparent;
+}
+
+//#__vconsole {
+//    font-size: 30px !important;
+//}

@@ -1,0 +1,119 @@
+.dialog-daily {
+    .ele-dialog-mask {
+        background-color: rgba(0, 0, 0, 0.24);
+    }
+
+    .dialog-top {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        background-size: 100% 100%;
+        width: 724px;
+        height: 495px;
+        margin: auto;
+        position: relative;
+
+        .dialog-middle-content {
+            width: 724px;
+            height: 495px;
+            margin: auto;
+            padding-top: 144px;
+            background: url("../../../assets/images/dialog/daily/bg.png") no-repeat;
+            position: relative;
+            text-align: center;
+            box-sizing: border-box;
+
+            .dialog-top-anchor {
+                font-size: 28px;
+                color: $textColor;
+                line-height: 1.5;
+
+                .intl-active {
+                    color: #F0005E;
+                }
+            }
+
+            .dialog-top-name {
+                margin: 4px auto 0;
+                font-size: 32px;
+                font-weight: bold;
+                color: $textColor;
+                line-height: 1.5;
+            }
+
+            .dialog-top-rank {
+                margin: 18px auto 0;
+                font-size: 48px;
+                font-weight: bold;
+                line-height: 60px;
+                position: relative;
+                overflow: hidden;
+                color: #FED324;
+
+                &::before {
+                    @extend .fcc;
+                    content: attr(data-text);
+                    width: 100%;
+                    height: 100%;
+                    text-shadow: 0px 1px 2px rgba(255, 235, 0, 0.9);
+                    position: absolute;
+                    left: 50%;
+                    top: 50%;
+                    transform: translate(-50%, -50%);
+                    color: #FED324;
+                }
+
+                &::after {
+                    @extend .fcc;
+                    content: attr(data-text);
+                    width: 100%;
+                    height: 100%;
+                    //background: linear-gradient(0deg,#FED324 0, #FF4E0B 100%);
+                    //background-clip: text;
+                    mask: linear-gradient(to bottom, #FF4E0B 0, transparent 100%);
+                    position: absolute;
+                    left: 50%;
+                    top: 50%;
+                    transform: translate(-50%, -50%);
+                    color: #FF4E0B;
+                }
+
+            }
+
+            .dialog-top-close {
+                @extend .fcc;
+                width: 502px;
+                height: 76px;
+                margin: 35px auto 0;
+                background: url("../../../assets/images/dialog/close.png") no-repeat;
+                font-size: 30px;
+                font-weight: bold;
+                color: $textColor;
+            }
+        }
+
+
+        .dialog-header {
+            position: absolute;
+            width: 300px;
+            height: 193px;
+            font-size: 20px;
+            background: url("../../../assets/images/dialog/daily/head.png");
+            left: 50%;
+            top: -75px;
+            transform: translateX(-50%);
+            z-index: 10;
+
+            .anchor-avatar {
+                width: 148px;
+                height: 148px;
+                border-radius: 148px;
+                position: absolute;
+                left: 50%;
+                top: 39px;
+                transform: translateX(-50%);
+            }
+        }
+    }
+}
