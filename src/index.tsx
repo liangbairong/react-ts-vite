@@ -5,7 +5,7 @@ import 'elelive-ui/es/index-all.min.css'
 import Utils from 'elelive-ui/es/Components/Utils';
 import App from './app/app';
 //兼容ios11 10
-import 'globalthis/auto';
+// import 'globalthis/auto';
 
 Utils.supportsWebp(window).then((res) => {
     if (res) {

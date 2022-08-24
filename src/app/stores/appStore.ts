@@ -35,7 +35,7 @@ type IListsProps = {
 };
 
 export interface IStore {
-    noneImage: string;
+    i18n: any;
     params: IParams;
     auth: IAuth;
     server: IServer;
@@ -46,10 +46,16 @@ export interface IStore {
     updateAppUrl: (search: string) => void;
     updateServerConfig: (options: Record<string, any>) => void;
     updateListsStyles: (options: IListsProps) => void;
+
+    setI18n:(data: any) => void;
 }
 
 const appStore = observable<IStore>({
-    noneImage: new URL('@Assets/images/common/logo.png',import.meta.url).href,
+    i18n: {},
+    setI18n(data){
+        this.i18n=data
+        return this
+    },
 
     server: {
         timestamp: Date.now(), // 服务器timestamp
@@ -63,7 +69,7 @@ const appStore = observable<IStore>({
     params: {
         // region: '',
         // anchorId: '',
-        // lang: '',
+        lang: '',
         // curTab: '',
     }, // 从url中获取的所有参数
 
@@ -123,7 +129,7 @@ const appStore = observable<IStore>({
         const queryOptions: Record<string, any> = queryString.parse(search);
 
         if (isPlainObject(queryOptions)) {
-            const obj = {};
+            const obj:any = {};
             /* 避免因为url重复导致的参数错误问题 */
             Object.keys(queryOptions).forEach((item) => {
                 if (Array.isArray(queryOptions[item])) {
@@ -142,6 +148,11 @@ const appStore = observable<IStore>({
             if (!this.auth.region) {
                 Object.assign(this.auth, {
                     region: queryOptions.region,
+                });
+            }
+            if(obj.lang){
+                Object.assign(this.appSystemInfo, {
+                    language:obj.lang,
                 });
             }
         }

@@ -1,10 +1,8 @@
 import React, { memo, lazy, Suspense } from 'react';
-
+import intl from "react-intl-universal";
 import { Switch, Route, withRouter } from 'react-router-dom';
-
+// @ts-ignore
 import { Helmet } from 'react-helmet';
-
-import intl from 'react-intl-universal';
 
 import Loading from 'elelive-ui/es/Components/Loading';
 
@@ -61,13 +59,7 @@ export const RouteWithSubRoutesFn: React.FC<IRouteWithSubRoutes> = (
                 // pass the sub-routes down to keep nesting
                 <>
                     <Helmet>
-                        {/*{width ?*/}
-                        {/*    <meta name="viewport" content={`width=${width},user-scalable=no`} />*/}
-                        {/*    :*/}
-                        {/*    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no" />*/}
-                        {/*}*/}
-                        {/*TODO:ios11报错*/}
-                        {/*{title && <title>{title !== '' && intl.get(title)}</title>}*/}
+                        {title && <title>{title !== '' && intl.get(title)}</title>}
                     </Helmet>
                     {/*TODO:ios11报错*/}
                     {/*<Suspense fallback={<Loading open={fallback} fullScreen />}>*/}
@@ -80,16 +72,16 @@ export const RouteWithSubRoutesFn: React.FC<IRouteWithSubRoutes> = (
     );
 };
 
+
 export const RouteWithSubRoutes = memo(
     RouteWithSubRoutesFn,
+    // @ts-ignore
     (prevProps: IPropsAreEqual, nextProps: IPropsAreEqual) => prevProps.path === nextProps.path
 );
 
 const Routes = withRouter(({ location }) => {
     const appStore = useStore<IStore>(AppContext);
     appStore.updateAppUrl(location.search);
-
-
 
     return (
         <Switch>

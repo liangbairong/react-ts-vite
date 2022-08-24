@@ -28,7 +28,7 @@ interface IAppProps extends IProps {}
 const App: React.FC<IAppProps> = (): JSX.Element => {
     /* 获取授权信息 */
     const updateAuthInfo = () => {
-        JSBridge.GetAppUserInfo((res) => {
+        JSBridge.GetAppUserInfo((res:any) => {
             console.log('Auth=======>', res);
             appStore.updateAuthInfo(res);
         });
@@ -54,6 +54,7 @@ const App: React.FC<IAppProps> = (): JSX.Element => {
     };
 
     useEffect(() => {
+        appStore.updateAppUrl(location.search);
         updateAuthInfo();
         updateAppSystemInfo();
         userAgentClass();
@@ -61,9 +62,6 @@ const App: React.FC<IAppProps> = (): JSX.Element => {
 
     return (
         <AppContext.Provider value={appStore}>
-            <div>
-                aaaww
-            </div>
             <EntryApp />
         </AppContext.Provider>
     );

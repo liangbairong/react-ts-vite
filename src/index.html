@@ -7,7 +7,12 @@
   <meta name="keywords" content="elelive">
   <meta name="description" content="new years">
   <title>小象直播</title>
+  <%- injectScript %>
   <script>
+    //兼容ios11
+    this.globalThis || (this.globalThis = this)
+
+
     window.externalEnvObj = {}
     var url = "/env.json"/*json文件url，本地的就写本地的位置，如果是服务器的就写服务器的路径*/
     var XhrObj = new XMLHttpRequest();
@@ -30,6 +35,8 @@
     console.log('ROOT_BASE--' + ROOT_BASE)
     console.log('HTTP_BASE--' + HTTP_BASE)
   </script>
+
+  <%- testScript %>
 </head>
 <body>
 <div id="app"></div>

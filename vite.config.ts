@@ -28,6 +28,7 @@ export default defineConfig({
     open: true, // 设置服务启动时是否自动打开浏览器
     proxy
   },
+  // publicDir:'./public',
   // define: {
   //   wRes: {}
   // },
@@ -58,15 +59,10 @@ export default defineConfig({
     target: ['es2015'],
     sourcemap: process.env.TYPE !== 'production',
     outDir: '../artifact',
-    // assetsDir:'',
     rollupOptions: {
       input: {
         main: resolve(__dirname, './src/index.html'),
-        // live: resolve(__dirname, './src/live.html'),
-        // dialog: resolve(__dirname, './src/dialog.html')
       },
-
-
     }
   },
   plugins: [
@@ -84,9 +80,15 @@ export default defineConfig({
     }),
     minifyHtml(),
     injectHtml({
-      // data: {
-      //   injectScript: process.env.TYPE !== 'production' ? '<script src="http://cdn.bootcdn.net/ajax/libs/vConsole/3.9.1/vconsole.min.js"></script><script>new VConsole()</script>' : '',
-      // },
+      data: {
+        injectScript: process.env.TYPE !== 'production' ? '<script src="http://cdn.bootcdn.net/ajax/libs/vConsole/3.9.1/vconsole.min.js"></script><script>new VConsole()</script>' : '',
+        testScript:process.env.TYPE !== 'production' ? `
+        <script>
+            console.log('测试代码')
+        
+        </script>
+        `:''
+      },
     }),
     importToCDN({
       modules: [
