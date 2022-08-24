@@ -64,7 +64,7 @@ const App: React.FC<IAppProps> = (): JSX.Element => {
             <div>
                 aaaww
             </div>
-            {/*<EntryApp />*/}
+            <EntryApp />
         </AppContext.Provider>
     );
 };

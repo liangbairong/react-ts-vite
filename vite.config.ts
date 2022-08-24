@@ -5,7 +5,7 @@ import react from '@vitejs/plugin-react'
 import { viteMockServe } from 'vite-plugin-mock';
 import { minifyHtml, injectHtml } from 'vite-plugin-html'
 
-// import importToCDN, { autoComplete } from 'vite-plugin-cdn-import'
+import importToCDN, { autoComplete } from 'vite-plugin-cdn-import'
 
 const imageHttpBase = '/assets/';
 let proxy = {}
@@ -88,25 +88,25 @@ export default defineConfig({
       //   injectScript: process.env.TYPE !== 'production' ? '<script src="http://cdn.bootcdn.net/ajax/libs/vConsole/3.9.1/vconsole.min.js"></script><script>new VConsole()</script>' : '',
       // },
     }),
-    // importToCDN({
-    //   modules: [
-    //     {
-    //       name: 'react',
-    //       var: 'react',
-    //       path: '//cdn-web.elelive.net/lib/react/17.0.2/react.production.min.js'
-    //     },
-    //     {
-    //       name: 'react-dom',
-    //       var: 'react-dom',
-    //       path: '//cdn-web.elelive.net/lib/react-dom/17.0.2/react-dom.production.min.js'
-    //     },
-    //     {
-    //       name: 'mobx',
-    //       var: 'mobx',
-    //       path: '//cdn-web.elelive.net/lib/mobx/6.3.2/mobx.umd.production.min.js'
-    //     },
-    //   ]
-    // })
+    importToCDN({
+      modules: [
+        {
+          name: 'react',
+          var: 'React',
+          path: '//cdn-web.elelive.net/lib/react/17.0.2/react.production.min.js'
+        },
+        {
+          name: 'react-dom',
+          var: 'ReactDOM',
+          path: '//cdn-web.elelive.net/lib/react-dom/17.0.2/react-dom.production.min.js'
+        },
+        {
+          name: 'mobx',
+          var: 'mobx',
+          path: '//cdn-web.elelive.net/lib/mobx/6.3.2/mobx.umd.production.min.js'
+        },
+      ]
+    })
   ],
 })
 

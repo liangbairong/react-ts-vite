@@ -16,8 +16,10 @@ import { useStore } from '../hooks';
 
 
 /* 页面 */
-const Index = lazy(() => import('../pages/index/index'));
+{/*TODO:ios11报错*/}
+// const Index = lazy(() => import('../pages/index/index'));
 
+import Index from '../pages/index/index'
 const routesConfig = [
     {
         path: '/',
@@ -59,17 +61,19 @@ export const RouteWithSubRoutesFn: React.FC<IRouteWithSubRoutes> = (
                 // pass the sub-routes down to keep nesting
                 <>
                     <Helmet>
-                        {width ?
-                            <meta name="viewport" content={`width=${width},user-scalable=no`} />
-                            :
-                            <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no" />
-                        }
-                        {title && <title>{title !== '' && intl.get(title)}</title>}
+                        {/*{width ?*/}
+                        {/*    <meta name="viewport" content={`width=${width},user-scalable=no`} />*/}
+                        {/*    :*/}
+                        {/*    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no" />*/}
+                        {/*}*/}
+                        {/*TODO:ios11报错*/}
+                        {/*{title && <title>{title !== '' && intl.get(title)}</title>}*/}
                     </Helmet>
-
-                    <Suspense fallback={<Loading open={fallback} fullScreen />}>
-                        <route.component {...props} routes={routes} />
-                    </Suspense>
+                    {/*TODO:ios11报错*/}
+                    {/*<Suspense fallback={<Loading open={fallback} fullScreen />}>*/}
+                    {/*    <route.component {...props} routes={routes} />*/}
+                    {/*</Suspense>*/}
+                    <route.component {...props} routes={routes} />
                 </>
             )}
         />
