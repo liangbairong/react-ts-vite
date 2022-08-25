@@ -1,7 +1,5 @@
 .box{
-    //background: url("@Assets/images/no-data.webp");
     width: 100px;
     height: 100px;
-
     @include bg('no-data','png')
 }
