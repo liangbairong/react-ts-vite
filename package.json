@@ -3,9 +3,9 @@
   "private": true,
   "version": "0.0.0",
   "scripts": {
-    "mock": "cross-env MOCK=1 vite --mode mock",
-    "dev": "cross-env PROXY=1 vite --mode development",
-    "build": "cross-env TYPE=uat vite build --mode uat",
+    "mock": "cross-env TYPE=mock vite --mode mock",
+    "dev": "cross-env TYPE=dev vite --mode development",
+    "build": "cross-env TYPE=uat VCONSOLE=1 vite build --mode production",
     "release": "cross-env TYPE=production vite build --mode production",
     "postinstall": "patch-package"
   },
@@ -50,6 +50,7 @@
     "vite": "^3.0.9",
     "vite-plugin-cdn-import": "^0.3.5",
     "vite-plugin-html": "^2.1.0",
-    "vite-plugin-mock": "^2.9.4"
+    "vite-plugin-mock": "^2.9.4",
+    "vite-plugin-webp": "^1.1.1"
   }
 }

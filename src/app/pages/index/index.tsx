@@ -8,6 +8,7 @@ const HomeView: FC = (): JSX.Element => {
 
     return (
         <div>
+            <div className='box'></div>
             pages-index
             <Text i18nKey={'Tothelatterone'}>sss</Text>
         </div>
