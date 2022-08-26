@@ -14,7 +14,13 @@ const fs = require('fs')
 const otherPlugins = []
 
 const initLoading = fs.readFileSync(join(__dirname, 'config/initLoading.html')).toString()
-const testCode = fs.readFileSync(join(__dirname, 'config/testCode.html')).toString()
+const testCode = process.env.TYPE !== 'production' ? fs.readFileSync(join(__dirname, 'config/testCode.html')).toString() : ''
+
+const version = Date.now()
+let fd = fs.openSync(join(__dirname, 'src/.env'), 'w');
+fs.writeFileSync(fd, 'VITE_VERSION=' + version, 'utf8');
+fs.closeSync(fd);
+
 
 if (webpPlugins) {
     otherPlugins.push(webpPlugins)
@@ -71,7 +77,13 @@ export default defineConfig({
             input: {
                 main: resolve(__dirname, './src/index.html'),
             },
-        }
+            // output: {
+            //     entryFileNames: '[name]-[hash].[ext]',
+            //     chunkFileNames: '[name]-[hash].[ext]',
+            //     assetFileNames: '[ext]/[name]-[hash][ext]'
+            // }
+        },
+        assetsDir: 'assets'
     },
     plugins: [
         react(),
@@ -90,7 +102,7 @@ export default defineConfig({
             data: {
                 initLoading,
                 injectScript: process.env.VCONSOLE ? '<script src="http://cdn.bootcdn.net/ajax/libs/vConsole/3.9.1/vconsole.min.js"></script><script>new VConsole()</script>' : '',
-                testScript: process.env.TYPE !== 'production' ? testCode : ''
+                testScript: testCode
             },
         }),
         minifyHtml(),

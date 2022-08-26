@@ -243,5 +243,5 @@ export function processingPictureSuffix(url) {
 
 
 export function getImgUrl(url:string){
-    return new URL('../../assets'+url,import.meta.url).href
+    return url+'?v='+import.meta.env.VITE_VERSION
 }

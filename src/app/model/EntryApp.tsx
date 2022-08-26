@@ -38,7 +38,7 @@ const I18nEntry = observer((props: I18nEntryProps): JSX.Element => {
     useEffect(() => {
         setInitDone(false);
 
-        const url = '/i18n/' + locales[currentLocale] + '/index.json'
+        const url = '/i18n/' + locales[currentLocale] + '/index.json?v='+import.meta.env.VITE_VERSION
         const XhrObj = new XMLHttpRequest();
         XhrObj.open("get", url, false);
         XhrObj.onreadystatechange = function () {
