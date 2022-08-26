@@ -36,32 +36,73 @@ const I18nEntry = observer((props: I18nEntryProps): JSX.Element => {
     console.log(currentLocale)
     const [initDone, setInitDone] = useState(false);
 
+    const hideInitLoading = () => {
+        if (window.ROOT_BASE && window.i18n) {
+            const dom: any = document.querySelector('.loading-box')
+            dom && dom.remove()
+        }
+    }
+
+    useEffect(() => {
+        fetch('/env.json')
+            .then(response => response.json())
+            .then(data => {
+                window.ROOT_BASE = data['X_ROOT_BASE']
+                window.HTTP_BASE = data['X_HTTP_BASE']
+                hideInitLoading()
+            });
+    }, [])
+
     useEffect(() => {
         setInitDone(false);
+        const url = '/i18n/' + locales[currentLocale] + '/index.json?v=' + import.meta.env.VITE_VERSION
+        // const XhrObj = new XMLHttpRequest();
+        // XhrObj.open("get", url, false);
+        // XhrObj.onreadystatechange = function () {
+        //     if (XhrObj.status == 200) {
+        //         const json = JSON.parse(XhrObj.responseText);
+        //         console.log('国际化');
+        //         console.log(json)
+        //         intl.init({
+        //             currentLocale,
+        //             locales: {
+        //                 [currentLocale]: json,
+        //             },
+        //         }).then(() => {
+        //             setTimeout(() => {
+        //                 setInitDone(true);
+        //             }, 0);
+        //
+        //             hideInitLoading()
+        //
+        //         });
+        //     } else {
+        //         console.log('获取国际化失败')
+        //     }
+        // }
+        // XhrObj.send(null);
 
-        const url = '/i18n/' + locales[currentLocale] + '/index.json?v='+import.meta.env.VITE_VERSION
-        const XhrObj = new XMLHttpRequest();
-        XhrObj.open("get", url, false);
-        XhrObj.onreadystatechange = function () {
-            if (XhrObj.status == 200) {
-                const json = JSON.parse(XhrObj.responseText);
+
+        fetch(url)
+            .then(response => response.json())
+            .then(json => {
                 console.log('国际化');
                 console.log(json)
+                window.i18n = json
                 intl.init({
                     currentLocale,
                     locales: {
                         [currentLocale]: json,
                     },
                 }).then(() => {
+
                     setTimeout(() => {
                         setInitDone(true);
                     }, 0);
+                    hideInitLoading()
                 });
-            } else {
-                console.log('获取国际化失败')
-            }
-        }
-        XhrObj.send(null);
+
+            });
 
     }, [currentLocale]);
 

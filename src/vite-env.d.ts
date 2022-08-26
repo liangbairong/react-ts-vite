@@ -36,7 +36,10 @@ declare interface Window {
         new (): HTMLImageElement;
     },
     appPendantMsg: any,
-    RedEventEmitter: any
+    RedEventEmitter: any,
+    ROOT_BASE:string,
+    HTTP_BASE:string,
+    i18n:any
 }
 
 declare interface Document {

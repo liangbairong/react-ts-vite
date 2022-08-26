@@ -13,36 +13,35 @@
     this.globalThis || (this.globalThis = this)
 
 
-    window.externalEnvObj = {}
-    var url = "/env.json"/*json文件url，本地的就写本地的位置，如果是服务器的就写服务器的路径*/
-    var XhrObj = new XMLHttpRequest();
-    XhrObj.open("get", url, false);/*设置请求方法与路径*/
-    XhrObj.onreadystatechange = function () {/*XHR对象获取到返回信息后执行*/
-      if (XhrObj.status == 200) {/*返回状态为200，即为数据获取成功*/
-        var json = JSON.parse(XhrObj.responseText);
-        console.log('环境变量内容');
-        console.log(json)
-        window.externalEnvObj = json
-      } else {
-        console.log('获取环境变量失败')
-      }
-    }
-    XhrObj.send(null);/*不发送数据到服务器*/
+    // window.externalEnvObj = {}
+    // var url = "/env.json"/*json文件url，本地的就写本地的位置，如果是服务器的就写服务器的路径*/
+    // var XhrObj = new XMLHttpRequest();
+    // XhrObj.open("get", url, false);/*设置请求方法与路径*/
+    // XhrObj.onreadystatechange = function () {/*XHR对象获取到返回信息后执行*/
+    //   if (XhrObj.status == 200) {/*返回状态为200，即为数据获取成功*/
+    //     var json = JSON.parse(XhrObj.responseText);
+    //     console.log('环境变量内容');
+    //     console.log(json)
+    //     window.externalEnvObj = json
+    //   } else {
+    //     console.log('获取环境变量失败')
+    //   }
+    // }
+    // XhrObj.send(null);/*不发送数据到服务器*/
 
-    ROOT_BASE = window.externalEnvObj['X_ROOT_BASE']
-    HTTP_BASE = window.externalEnvObj['X_HTTP_BASE']
+    // ROOT_BASE = window.externalEnvObj['X_ROOT_BASE']
+    // HTTP_BASE = window.externalEnvObj['X_HTTP_BASE']
+    //
+    // console.log('ROOT_BASE--' + ROOT_BASE)
+    // console.log('HTTP_BASE--' + HTTP_BASE)
 
-    console.log('ROOT_BASE--' + ROOT_BASE)
-    console.log('HTTP_BASE--' + HTTP_BASE)
   </script>
 
   <%- testScript %>
 </head>
 <body>
-
-<div id="app">
-  <%- initLoading %>
-</div>
+<div id="app"></div>
+<%- initLoading %>
 <script type="module" src="./index.tsx"></script>
 </body>
 </html>
