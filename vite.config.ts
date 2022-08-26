@@ -38,7 +38,7 @@ if (process.env.TYPE === 'dev') {
     }
 }
 export default defineConfig({
-    root: './src',
+    root: resolve(__dirname, 'src'),
     base: './',
     server: {
         host: '0.0.0.0',
@@ -73,7 +73,7 @@ export default defineConfig({
         target: ['es2015'],
         cssCodeSplit:true,
         sourcemap: process.env.TYPE !== 'production',
-        outDir: '../artifact',
+        outDir: resolve(__dirname, '../artifact'),
         rollupOptions: {
             input: {
                 main: resolve(__dirname, './src/index.html'),
@@ -95,7 +95,7 @@ export default defineConfig({
             modernPolyfills: ['es.promise.finally']
         }),
         viteMockServe({
-            mockPath: './src/mock',
+            mockPath: resolve(__dirname, './src/mock'),
             localEnabled: process.env.TYPE === 'mock',
             prodEnabled: process.env.TYPE === 'mock',
         }),
