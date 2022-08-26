@@ -7,6 +7,7 @@ import {useStore} from '../hooks';
 import {IStore} from '../stores/appStore';
 import Routes from './Routes';
 import ErrorBoundary from './Error';
+import queryString from "query-string";
 
 interface ILocales {
     [keyName: string]: string
@@ -30,8 +31,8 @@ const I18nEntry = observer((props: I18nEntryProps): JSX.Element => {
     const appStore = useStore<IStore>(AppContext);
 
     const {language} = appStore.appSystemInfo;
-
-    const currentLocale = language || 'zh-CN';
+    const queryOptions: Record<string, any> = queryString.parse(window.location.search);
+    const currentLocale = language || queryOptions.lang || 'zh-CN';
     console.log(currentLocale)
     const [initDone, setInitDone] = useState(false);
 

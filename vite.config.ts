@@ -71,6 +71,7 @@ export default defineConfig({
     build: {
         assetsInlineLimit: 0,  //禁止资源转换为base64
         target: ['es2015'],
+        cssCodeSplit:true,
         sourcemap: process.env.TYPE !== 'production',
         outDir: '../artifact',
         rollupOptions: {
