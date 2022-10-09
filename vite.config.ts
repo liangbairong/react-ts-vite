@@ -9,6 +9,7 @@ import importToCDN from 'vite-plugin-cdn-import';
 import autoprefixer from 'autoprefixer';
 import { webpPlugins, publicScss } from './config/webp';
 import viteEslint from 'vite-plugin-eslint';
+import requireTransform from 'vite-plugin-require-transform';
 const fs = require('fs');
 
 const otherPlugins = [];
@@ -145,6 +146,9 @@ export default defineConfig({
             failOnError: true,
             include: ['./src/**/*.js', './src/**/*.jsx', './src/**/*.ts', './src/**/*.tsx'],
             emitWarning: false,
+        }),
+        requireTransform({
+            fileRegex: /.js$|.ts$|.jsx$|.tsx$/,
         }),
         ...otherPlugins,
     ],
