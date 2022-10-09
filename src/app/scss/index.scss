@@ -1,0 +1,32 @@
+
+
+@font-face {
+  font-family: 'Bebas Neue';
+  src: url('/font/BebasNeue.woff2') format('woff2'),
+  url('/font/BebasNeue.woff') format('woff'),
+  url('/font/BebasNeue.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+.theme-dark{
+  body{
+    background: #202029;
+  }
+  .index .index-con .index-tit{
+    color: #F4F4F4;
+  }
+  .index .index-level-medal .index-level-medal-li .index-level-medal-bottom{
+    color: #F4F4F4;
+  }
+  .header{
+    color: #F4F4F4;
+  }
+  .header-on{
+    background: #202029;
+  }
+  .header .back{
+    filter: grayscale(100%) brightness(10000%);
+  }
+}

@@ -1,0 +1,143 @@
+.mask {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    left: 0;
+    top: 0;
+    background-color: rgba(0, 0, 0, 0.45);
+    z-index: 999;
+}
+
+.tips-box {
+    padding: evw(18) evw(32);
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: evw(10);
+    filter: blur(0px);
+    font-size: evw(26);
+    color: #333;
+    position: absolute;
+    top: evw(30);
+    right: evw(12);
+}
+
+.tips-box:after {
+    content: '';
+    width: 0;
+    height: 0;
+    border-width: evw(16);
+    border-style: solid;
+    border-color: transparent transparent #fff transparent;
+    position: absolute;
+    bottom: 100%;
+    right: 30px;
+}
+
+
+
+.page-download {
+    position: fixed;
+    left: 0;
+    top: 0;
+    @include bg('dow/dow-bg', 'png');
+    background-size: cover;
+    height: 100%;
+    width: 100vw;
+
+    .down-btn{
+        width: evw(590);
+        height: evw(88);
+        background: #FD085E;
+        border-radius: evw(44);
+        position: absolute;
+        bottom: evw(100);
+        left: 50%;
+        transform: translateX(-50%);
+        font-size: evw(32);
+        font-weight: 600;
+        color: #FFFFFF;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+}
+
+
+
+.community{
+    background: #202029;
+    backdrop-filter: blur(0px);
+    height: 100vh;
+    width: 100vw;
+    .com-header{
+        display: flex;
+        align-items: center;
+        background: rgba(0, 0, 0, 0.4);
+        height: evw(120);
+        padding: 0 evw(32);
+        .com-header-img{
+            width: evw(72);
+            height: evw(72);
+        }
+        .com-header-box{
+            flex: 1;
+            color: #F4F4F4;
+            padding-left: evw(16);
+            .com-header-box-tit{
+                font-size: evw(28);
+                font-weight: 600;
+            }
+            .com-header-box-p{
+                font-size: evw(24);
+                color: #B2B2B2;
+            }
+        }
+        .com-header-btn{
+            height: evw(48);
+            background: #FD085E;
+            border-radius: evw(34);
+            font-size: evw(22);
+            color: #FFFFFF;
+            display: flex;
+            align-items: center;
+            padding: 0 evw(20);
+        }
+    }
+    .com-center{
+        width: evw(622);
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%,-50%);
+        background: rgba(255,255,255,0.05);
+        border-radius: evw(20);
+        .com-center-img{
+            width: 100%;
+            display: block;
+        }
+        .com-center-text{
+            height: evw(122);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: evw(28);
+            color: #B2B2B2;
+        }
+    }
+
+    .com-go-btn{
+        width: evw(590);
+        height: evw(88);
+        background: #FD085E;
+        border-radius: evw(44);
+        position: absolute;
+        bottom: evw(40);
+        left: 50%;
+        transform: translateX(-50%);
+        font-size: evw(32);
+        font-weight: 600;
+        color: #FFFFFF;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+}

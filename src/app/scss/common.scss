@@ -1,8 +1,3 @@
-/*
-Document: base.css
-Author: wilson
-Description:common CSS
-*/
 
 /*
  * 全局变量
@@ -10,30 +5,6 @@ Description:common CSS
 //
 $mainThemeColor: #9E9EFD;
 $basicColor: #61dcd8;
-$lineColor: #9bbcff;
-
-$white: #fff;
-$black: #000;
-
-$textColor: #9024F6;
-$textHeaderColor: #f8ebbf;
-$textHightColor: #FE009F;
-$simpleTextColor: #FDFE86;
-$activeColor: #E85CFF;
-
-$titleColor: #8335ED;
-
-$unionStepsBgColor: #3e38ce;
-
-$listItemAvatarBorderColor: #ffe68d;
-
-$noneImageBgColor: #088CAF;
-
-// lists
-$listsTitleColor: #397B78;
-$listsMenuColor: #695AFF;
-$pkViewColor: #509F9B;
-
 
 /*
  * 函数
@@ -88,12 +59,7 @@ $pkViewColor: #509F9B;
     right: 0;
     transform: translateY(-50%);
 }
-.pfcc {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate3d(-50%,-50%,0);
-}
+
 
 .ellipsis {
     overflow: hidden;
@@ -101,36 +67,21 @@ $pkViewColor: #509F9B;
     text-overflow: ellipsis;
 }
 
-.ellipsis_two {
+// 文字多行截掉
+@mixin textHidden($num){
     display: flex;
     overflow: hidden;
     text-overflow: ellipsis;
-    -webkit-line-clamp: 2; /* 要显示的行数 */
+    -webkit-line-clamp: $num; /* 要显示的行数 */
     -webkit-box-orient: vertical;
 }
 
-.listsBg {
-    width: 710px;
-    margin: 0 auto;
-    padding: 12px;
-    background: linear-gradient(180deg, #936DFF 0%, #B090FF 100%);
-    box-shadow: inset 0px 0px 16px 4px #FFFFFF;
-    border: 4px solid #9263FF;
-    box-sizing: border-box;
+//挂件单位
+@function mvw($size){
+    @return calc(100vw / 201) * $size;
+}
+//页面单位
+@function evw($size){
+    @return calc(100vw / 750) * $size;
 }
 
-.listsBoxBase {
-    width: 678px;
-    margin: 0 auto;
-    background-repeat: no-repeat;
-    background-position: center top;
-    border: 2px solid #CFBBFF;
-    box-sizing: border-box;
-}
-
-
-
-.listsBoxSimple {
-    @extend .listsBoxBase;
-    background-image: linear-gradient(0deg, #F5E3FB 0%, #FBEFFE 99%);
-}

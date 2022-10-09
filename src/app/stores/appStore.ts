@@ -6,9 +6,11 @@ type IParams = {
     url?: string;
     region?: string;
     anchorId?: string;
+    anchor_id?: string;
     lang?: string;
     curTab?: string;
     selectTab?: string;
+    regionType?: string;
 };
 
 type IAuth = {
@@ -33,9 +35,15 @@ type IListsProps = {
     anchor?: string | number;
     user?: string | number;
 };
-
+type IAppHeaderInfo = {
+    statusBarHeight: number; //状态栏高度
+    titleBarHeight: number; //标题栏高度
+    bottomBarHeight: number; //底部导航栏高度
+};
 export interface IStore {
     i18n: any;
+    loading: boolean;
+    appHeaderInfo: IAppHeaderInfo;
     params: IParams;
     auth: IAuth;
     server: IServer;
@@ -46,15 +54,22 @@ export interface IStore {
     updateAppUrl: (search: string) => void;
     updateServerConfig: (options: Record<string, any>) => void;
     updateListsStyles: (options: IListsProps) => void;
-
-    setI18n:(data: any) => void;
+    setI18n: (data: any) => void;
+    setLoading: (data: boolean) => void;
+    setAppHeaderInfo: (data: IAppHeaderInfo) => void;
 }
 
 const appStore = observable<IStore>({
     i18n: {},
-    setI18n(data){
-        this.i18n=data
-        return this
+    setI18n(data) {
+        this.i18n = data;
+        return this;
+    },
+
+    loading: false,
+    setLoading(state) {
+        this.loading = state;
+        return this;
     },
 
     server: {
@@ -83,19 +98,24 @@ const appStore = observable<IStore>({
         nickName: '',
     },
 
-    // auth: {
-    //     Device: 'IOS',
-    //     accessToken: '7c06f86b22ec434eba5e2f6ce7efb778',
-    //     deviceId: '0F2EF816912A4E88A19405CFB12AA458',
-    //     uid: 'Test00011163',
-    //     AppVersion: '4.34.0',
-    //     region: 'XM',
-    //     nickName: 'LittleLoon',
-    //     // avatar: 'https://showme-livecdn.elelive.net/static/avatar.png?r=1',
-    // },
-
     appSystemInfo: {
         language: '',
+    },
+
+    appHeaderInfo: {
+        statusBarHeight: 0,
+        titleBarHeight: 88,
+        bottomBarHeight: 0,
+    },
+
+    setAppHeaderInfo(data) {
+        const tempData: any = { ...data };
+        const queryOptions: Record<string, any> = queryString.parse(location.search);
+        if (queryOptions?.anchorId) {
+            tempData.statusBarHeight = 4;
+        }
+        this.appHeaderInfo = tempData;
+        return this;
     },
 
     updateAuthInfo(auth) {
@@ -114,7 +134,7 @@ const appStore = observable<IStore>({
         return this;
     },
 
-    updateServerConfig(options) {
+    updateServerConfig(options: any) {
         if (isPlainObject(options)) {
             Object.assign(this.server, options);
         } else {
@@ -129,7 +149,7 @@ const appStore = observable<IStore>({
         const queryOptions: Record<string, any> = queryString.parse(search);
 
         if (isPlainObject(queryOptions)) {
-            const obj:any = {};
+            const obj: any = {};
             /* 避免因为url重复导致的参数错误问题 */
             Object.keys(queryOptions).forEach((item) => {
                 if (Array.isArray(queryOptions[item])) {
@@ -150,9 +170,9 @@ const appStore = observable<IStore>({
                     region: queryOptions.region,
                 });
             }
-            if(obj.lang){
+            if (obj.lang) {
                 Object.assign(this.appSystemInfo, {
-                    language:obj.lang,
+                    language: obj.lang,
                 });
             }
         }
@@ -161,10 +181,11 @@ const appStore = observable<IStore>({
 
     updateAppSystemInfo(appSystemInfo) {
         if (isPlainObject(appSystemInfo)) {
-            const { language = 'en' } = appSystemInfo;
+            const { language = 'en', themeName = 'light' } = appSystemInfo;
             Object.assign(this.appSystemInfo, {
                 language,
             });
+            document.documentElement.className = 'theme-' + themeName;
             console.log(appSystemInfo, 'jsbridge返回参数appSystemInfo');
         }
         return this;

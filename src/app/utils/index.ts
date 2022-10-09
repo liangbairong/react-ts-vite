@@ -1,36 +1,6 @@
 import queryString from 'query-string';
 // import appStore from '../stores/appStore';
 
-/* 节流函数 */
-export const throttle = (fn, delay) => {
-    let timer;
-    return function () {
-        let _this = this;
-        let args = arguments;
-        if (timer) {
-            return;
-        }
-        timer = setTimeout(function () {
-            fn.apply(_this, args);
-            timer = null;
-        }, delay);
-    };
-};
-
-/* 防抖函数 */
-export const debounce = (fn, delay) => {
-    let timer;
-    return function () {
-        let _this = this;
-        let args = arguments;
-        if (timer) {
-            clearTimeout(timer);
-        }
-        timer = setTimeout(function () {
-            fn.apply(_this, args);
-        }, delay);
-    };
-};
 export const onVisibilitychange = () => {
     const onVisibilitychangeFn = () => {
         console.log('执行页面监听事件');
@@ -44,18 +14,6 @@ export const onVisibilitychange = () => {
     };
     // 监听页面的隐藏事件
     document.addEventListener('visibilitychange', onVisibilitychangeFn);
-};
-
-export const makeAppointArray = (arr, len = 0) => {
-    if (!Array.isArray(arr)) {
-        throw new Error('arguments is not a Array!');
-    }
-    return new Array(len).fill('').map((item, index) => {
-        if (arr[index]) {
-            item = arr[index];
-        }
-        return item;
-    });
 };
 
 export const convertMoneyUnit = (value: number, type?: any) => {
@@ -80,36 +38,16 @@ export const convertMoneyUnit = (value: number, type?: any) => {
     }
 };
 
-export const filterParams=(searchArg = '',setArgKey='',setArgValue= 0)=> {
-    const temp = {};
-    const searchStr:string = searchArg || window.location.search
-    const params:Object = queryString.parse(searchStr);
-    for (const i in params) {
-        if (params[i]) {
-            if (Array.isArray(params[i]) && params[i].length > 0) {
-                temp[i] = params[i][0];
-            } else {
-                temp[i] = params[i];
-            }
-        }
-    }
-    // 设置单一url参数
-    if(setArgKey && setArgValue) {
-        temp[setArgKey] = setArgValue
-    }
-    return queryString.stringify(temp);
-}
-
 // 获取url 参数
-export const getUrlParams=()=> {
+export const getUrlParams = () => {
     let temp = window.location.hash;
-    if(temp){
-        temp=temp.split("?")[1]
-    }else{
-        temp=window.location.search
+    if (temp) {
+        temp = temp.split('?')[1];
+    } else {
+        temp = window.location.search;
     }
-    return queryString.parse(temp)
-}
+    return queryString.parse(temp);
+};
 
 /* 兼容浏览器活性事件 */
 export const getVisibilityOptions = () => {
@@ -146,11 +84,9 @@ export const getVisibilityOptions = () => {
     }
 };
 
-export const CheckVersion = (v1, v2) => {
-    let v1Res = v1;
-    let v2Res = v2;
-    v1Res = v1Res.split('.');
-    v2Res = v2Res.split('.');
+export const CheckVersion = (v1: string, v2: string) => {
+    const v1Res = v1.split('.');
+    const v2Res = v2.split('.');
     const len = Math.max(v1Res.length, v2Res.length);
 
     while (v1Res.length < len) {
@@ -174,74 +110,27 @@ export const CheckVersion = (v1, v2) => {
     return 0;
 };
 
-/* 格式化数字 */
-export const formatNum = (num) => {
-    return parseFloat(num).toLocaleString()
-}
-
-/* 格式化数字1 */
-export const formatNum1 = (num) => {
-    if (!num) return num
-    return parseFloat(num).toLocaleString()
-}
-
-//
-// const comparePackage = (version) => {
-//     const { AppVersion = '0.0.0' } = appStore.auth;
-//     if (typeof version !== 'string') {
-//         throw new Error('version is not a string!');
-//     }
-// };
-
-/* 加载图片 */
-export const loadImg = (imgArr, callback) => {
-    for (let i = 0; i < imgArr.length; i++) {
-        const img = new Image()
-        let temp = imgArr[i]
-        img.src = temp
-        img.onload = () => {
-            if(i===imgArr.length-1){
-                callback && callback()
-            }
-        }
-        img.onerror = () => {
-            console.log('图片加载失败:' + temp)
-        }
-    }
-}
-
-export function isPlainObject(obj){
+export function isPlainObject(obj: any) {
     let prototype;
 
-    return Object.prototype.toString.call(obj) === '[object Object]'
-        && (prototype = Object.getPrototypeOf(obj), prototype === null ||
-        prototype == Object.getPrototypeOf({}))
+    return Object.prototype.toString.call(obj) === '[object Object]' && ((prototype = Object.getPrototypeOf(obj)), prototype === null || prototype == Object.getPrototypeOf({}));
 }
 
-// 自动给服务端返回的图片链接增加处理参数
-export function processingPictureSuffix(url) {
-    if(typeof url !== 'string'){
-        return url;
-    }
-    // 拆分url
-    const urlArray = url.split('?');
-    // 获取basename
-    const basename = urlArray.find(item => item.indexOf('://') !== -1) || ''
-    // 判断是否腾讯云或其他云资源
-    if(basename.indexOf('www.9yiwums.com') !== -1){
-        // 腾讯云使用!1x方式
-        return basename + '!1x?' + urlArray.slice(1, urlArray.length).join('');
-    }else{
-        // 其他云资源使用样式拼接，避免污染url
-        if(url.indexOf('?') !== -1){
-            return url + '&x-oss-process=style%2F1x';
-        }else{
-            return url + '?x-oss-process=style%2F1x';
-        }
-    }
+export function pxToVw(size: number) {
+    // return document.body.clientWidth / 750 * size
+    return (document.body.clientWidth / 750) * size;
 }
 
-
-export function getImgUrl(url:string){
-    return url+'?v='+import.meta.env.VITE_VERSION
+export function plusVersion(url: string) {
+    return url + '?v=' + import.meta.env.VITE_VERSION;
 }
+export function isIos() {
+    const u = navigator.userAgent;
+    return !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/);
+}
+
+export const isWx = () => {
+    const u = navigator.userAgent;
+    // @ts-ignore
+    return u.toLowerCase().match(/MicroMessenger/i) == 'micromessenger';
+};

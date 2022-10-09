@@ -1,37 +1,36 @@
 import React, { memo, lazy, Suspense } from 'react';
-import intl from "react-intl-universal";
+import reactI18n from 'min-react-i18n';
 import { Switch, Route, withRouter } from 'react-router-dom';
+import appStore from '../stores/appStore';
 // @ts-ignore
 import { Helmet } from 'react-helmet';
 
-import Loading from 'elelive-ui/es/Components/Loading';
-
-import { IStore } from '@Stores/appStore';
-
-import { AppContext } from '../context';
-
-import { useStore } from '../hooks';
-
-
 /* 页面 */
-{/*TODO:ios11报错*/}
+{
+    /*TODO:ios11报错*/
+}
 // const Index = lazy(() => import('../pages/index/index'));
+import Index from '../pages/index/index';
+import Community from '../pages/community/index';
 
-import Index from '../pages/index/index'
 const routesConfig = [
     {
         path: '/',
         component: Index,
         exact: true,
-        title: 'Loveandexpressionactivity',
-        width: 750,
+        title: 'VJLevel',
     },
     {
         path: '/home',
         component: Index,
         exact: true,
-        title: 'Loveandexpressionactivity',
-        width: 750,
+        title: 'VJLevel',
+    },
+    {
+        path: '/community',
+        component: Community,
+        exact: true,
+        title: 'xx',
     },
 ];
 
@@ -44,23 +43,18 @@ type IRouteWithSubRoutes = {
     routes?: object;
     component?: any;
     title?: string;
-    width?: number;
     fallback?: boolean;
 };
 
-export const RouteWithSubRoutesFn: React.FC<IRouteWithSubRoutes> = (
-    route: IRouteWithSubRoutes
-): JSX.Element => {
-    const { path = '', routes, title, width, fallback = true } = route;
+export const RouteWithSubRoutesFn: React.FC<IRouteWithSubRoutes> = (route: IRouteWithSubRoutes): JSX.Element => {
+    const { path = '', routes, title, fallback = true } = route;
     return (
         <Route
             path={path}
             render={({ staticContext, ...props }) => (
                 // pass the sub-routes down to keep nesting
                 <>
-                    <Helmet>
-                        {title && <title>{title !== '' && intl.get(title)}</title>}
-                    </Helmet>
+                    <Helmet>{title && <title>{title !== '' && reactI18n.get(title)}</title>}</Helmet>
                     {/*TODO:ios11报错*/}
                     {/*<Suspense fallback={<Loading open={fallback} fullScreen />}>*/}
                     {/*    <route.component {...props} routes={routes} />*/}
@@ -72,20 +66,19 @@ export const RouteWithSubRoutesFn: React.FC<IRouteWithSubRoutes> = (
     );
 };
 
-
 export const RouteWithSubRoutes = memo(
     RouteWithSubRoutesFn,
     // @ts-ignore
-    (prevProps: IPropsAreEqual, nextProps: IPropsAreEqual) => prevProps.path === nextProps.path
+    (prevProps: IPropsAreEqual, nextProps: IPropsAreEqual) => prevProps.path === nextProps.path,
 );
 
 const Routes = withRouter(({ location }) => {
-    const appStore = useStore<IStore>(AppContext);
     appStore.updateAppUrl(location.search);
 
     return (
         <Switch>
-            {routesConfig.filter((item) => item.path === location.pathname)
+            {routesConfig
+                .filter((item) => item.path === location.pathname)
                 .map((route, i) => (
                     <RouteWithSubRoutes key={i} {...route} />
                 ))}

@@ -1,0 +1,26 @@
+.header{
+  height: evw(88);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: evw(32);
+  font-weight: 600;
+  color: #171717;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  left: 0;
+  z-index: 9;
+  transition: all 0.1s;
+  .back{
+    position: absolute;
+    left: evw(16);
+    //top: 50%;
+    //transform: translateY(-50%);
+    width: evw(48);
+    height: evw(48);
+  }
+}
+.header-on{
+  background: #fff;
+}

@@ -1,18 +1,20 @@
 import React from 'react';
 
-type IProps = {};
+type IProps = {
+    children: React.ReactNode;
+};
 
 type IState = {
-    hasError?: Boolean;
+    hasError?: boolean;
 };
 
 class ErrorBoundary extends React.Component<IProps, IState> {
-    constructor(props) {
+    constructor(props: IProps) {
         super(props);
         this.state = { hasError: false };
     }
 
-    static getDerivedStateFromError(error) {
+    static getDerivedStateFromError(error: Error) {
         // 更新 state.tsx 使下一次渲染能够显示降级后的 UI
         if (error) {
             console.log(error);

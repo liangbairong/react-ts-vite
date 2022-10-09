@@ -1,0 +1,13 @@
+diff --git a/node_modules/vite-plugin-cdn-import/dist/index.js b/node_modules/vite-plugin-cdn-import/dist/index.js
+index 9bd54af..0a7b98c 100644
+--- a/node_modules/vite-plugin-cdn-import/dist/index.js
++++ b/node_modules/vite-plugin-cdn-import/dist/index.js
+@@ -262,7 +262,7 @@ function PluginImportToCDN(options) {
+       },
+       transformIndexHtml(html) {
+         const cssCode = data.map((v) => v.cssList.map((css) => `<link href="${css}" rel="stylesheet">`).join("\n")).filter((v) => v).join("\n");
+-        const jsCode = !isBuild ? "" : data.map((p) => p.pathList.map((url) => `<script src="${url}"></script>`).join("\n")).join("\n");
++        const jsCode = !isBuild ? "" : data.map((p) => p.pathList.map((url) => `<script defer src="${url}"></script>`).join("\n")).join("\n");
+         return html.replace(/<\/title>/i, `</title>${cssCode}
+ ${jsCode}`);
+       }

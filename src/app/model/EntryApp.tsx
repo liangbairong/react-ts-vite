@@ -1,16 +1,15 @@
-import React, {useEffect, useState} from 'react';
-import {BrowserRouter} from 'react-router-dom';
-import intl from 'react-intl-universal';
-import {observer} from 'mobx-react-lite';
-import {AppContext} from '../context';
-import {useStore} from '../hooks';
-import {IStore} from '../stores/appStore';
+import React, { useEffect, useState } from 'react';
+import { BrowserRouter } from 'react-router-dom';
+import Loading from 'elelive-ui/es/Components/Loading';
+import { observer } from 'mobx-react-lite';
+import appStore from '../stores/appStore';
 import Routes from './Routes';
 import ErrorBoundary from './Error';
-import queryString from "query-string";
+import queryString from 'query-string';
+import reactI18n from 'min-react-i18n';
 
 interface ILocales {
-    [keyName: string]: string
+    [keyName: string]: string;
 }
 
 const locales: ILocales = {
@@ -19,6 +18,7 @@ const locales: ILocales = {
     en: 'en_us',
     vi: 'vi_vi',
     id: 'id_id',
+    ms: 'ms_ms',
 };
 
 type I18nEntryProps = {
@@ -26,94 +26,61 @@ type I18nEntryProps = {
 };
 
 const I18nEntry = observer((props: I18nEntryProps): JSX.Element => {
-    const {children} = props;
-
-    const appStore = useStore<IStore>(AppContext);
-
-    const {language} = appStore.appSystemInfo;
+    const { children } = props;
+    const { loading } = appStore;
+    const { language } = appStore.appSystemInfo;
     const queryOptions: Record<string, any> = queryString.parse(window.location.search);
     const currentLocale = language || queryOptions.lang || 'zh-CN';
-    console.log(currentLocale)
+    console.log(currentLocale);
     const [initDone, setInitDone] = useState(false);
 
     const hideInitLoading = () => {
         if (window.ROOT_BASE && window.i18n) {
-            const dom: any = document.querySelector('.loading-box')
-            dom && dom.remove()
+            const dom: any = document.querySelector('.loading-box');
+            dom && dom.remove();
         }
-    }
+    };
 
     useEffect(() => {
         fetch('/env.json')
-            .then(response => response.json())
-            .then(data => {
-                window.ROOT_BASE = data['X_ROOT_BASE']
-                window.HTTP_BASE = data['X_HTTP_BASE']
-                hideInitLoading()
+            .then((response) => response.json())
+            .then((data) => {
+                window.ROOT_BASE = data['X_ROOT_BASE'];
+                window.HTTP_BASE = data['X_HTTP_BASE'];
+                hideInitLoading();
             });
-    }, [])
+    }, []);
 
     useEffect(() => {
         setInitDone(false);
-        const url = '/i18n/' + locales[currentLocale] + '/index.json?v=' + import.meta.env.VITE_VERSION
-        // const XhrObj = new XMLHttpRequest();
-        // XhrObj.open("get", url, false);
-        // XhrObj.onreadystatechange = function () {
-        //     if (XhrObj.status == 200) {
-        //         const json = JSON.parse(XhrObj.responseText);
-        //         console.log('国际化');
-        //         console.log(json)
-        //         intl.init({
-        //             currentLocale,
-        //             locales: {
-        //                 [currentLocale]: json,
-        //             },
-        //         }).then(() => {
-        //             setTimeout(() => {
-        //                 setInitDone(true);
-        //             }, 0);
-        //
-        //             hideInitLoading()
-        //
-        //         });
-        //     } else {
-        //         console.log('获取国际化失败')
-        //     }
-        // }
-        // XhrObj.send(null);
-
-
+        const url = '/i18n/' + locales[currentLocale] + '/index.json?v=' + import.meta.env.VITE_VERSION;
         fetch(url)
-            .then(response => response.json())
-            .then(json => {
+            .then((response) => response.json())
+            .then((json) => {
                 console.log('国际化');
-                console.log(json)
-                window.i18n = json
-                intl.init({
-                    currentLocale,
-                    locales: {
-                        [currentLocale]: json,
-                    },
-                }).then(() => {
-
-                    setTimeout(() => {
-                        setInitDone(true);
-                    }, 0);
-                    hideInitLoading()
-                });
-
+                console.log(json);
+                window.i18n = json;
+                appStore.setI18n(json);
+                reactI18n.init(json);
+                setTimeout(() => {
+                    setInitDone(true);
+                }, 0);
+                hideInitLoading();
             });
-
     }, [currentLocale]);
 
-    return <>{initDone && children}</>;
+    return (
+        <>
+            {initDone && children} <Loading open={loading} fullScreen />
+        </>
+    );
 });
 
 const EntryApp = (): JSX.Element => (
     <BrowserRouter>
         <I18nEntry>
             <ErrorBoundary>
-                <Routes/>
+                <Routes />
             </ErrorBoundary>
         </I18nEntry>
     </BrowserRouter>

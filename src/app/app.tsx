@@ -1,34 +1,21 @@
 import React, { useEffect } from 'react';
-
 import EntryApp from './model/EntryApp';
-
 import { AppContext } from './context';
-
 import appStore from './stores/appStore';
-
 import JSBridge from './utils/JSBridge';
-
 import './scss/base.scss';
-
 import './scss/index.scss';
-
-// if (APP_ENV !== 'prod') {
-//     // eslint-disable-next-line global-require
-//     // const VConsole = require('vconsole');
-//     // eslint-disable-next-line no-new
-//     // new VConsole();
-// }
 
 interface IProps {
     children?: React.ReactNode;
 }
 
-interface IAppProps extends IProps {}
+type IAppProps = IProps;
 
 const App: React.FC<IAppProps> = (): JSX.Element => {
     /* 获取授权信息 */
     const updateAuthInfo = () => {
-        JSBridge.GetAppUserInfo((res:any) => {
+        JSBridge.GetAppUserInfo((res: any) => {
             console.log('Auth=======>', res);
             appStore.updateAuthInfo(res);
         });
@@ -36,7 +23,7 @@ const App: React.FC<IAppProps> = (): JSX.Element => {
 
     /* 获取系统信息 */
     const updateAppSystemInfo = () => {
-        JSBridge.GetAppSystemInfo((res) => {
+        JSBridge.GetAppSystemInfo((res: any) => {
             console.log('触发jsbridge事件-GetAppSystemInfo', res);
             appStore.updateAppSystemInfo(res);
         });
@@ -55,6 +42,14 @@ const App: React.FC<IAppProps> = (): JSX.Element => {
 
     useEffect(() => {
         appStore.updateAppUrl(location.search);
+
+        // 获取系统高度
+        JSBridge.getAppHeaderInfo((data: string) => {
+            console.log('---getAppHeaderInfo---');
+            console.log(data);
+            appStore.setAppHeaderInfo(JSON.parse(data));
+        });
+
         updateAuthInfo();
         updateAppSystemInfo();
         userAgentClass();
