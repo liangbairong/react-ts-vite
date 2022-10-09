@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import ReactDOM from 'react-dom/client';
 import 'elelive-ui/es/index-all.min.css';
 import Utils from 'elelive-ui/es/Components/Utils';
 import App from './app/app';
@@ -10,5 +10,16 @@ Utils.supportsWebp(window).then((res: boolean) => {
         document.body.classList.add('webp');
     }
 });
+//
+// ReactDOM.render(<App />, document.getElementById('app'));
+//
 
-ReactDOM.render(<App />, document.getElementById('app'));
+// @ts-ignore
+// const root = createRoot(document.getElementById('app'));
+// root.render(<App />);
+
+ReactDOM.createRoot(document.getElementById('app') as HTMLElement).render(
+    <React.StrictMode>
+        <App />
+    </React.StrictMode>,
+);

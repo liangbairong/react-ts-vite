@@ -9,7 +9,7 @@ import importToCDN from 'vite-plugin-cdn-import';
 import autoprefixer from 'autoprefixer';
 import { webpPlugins, publicScss } from './config/webp';
 import viteEslint from 'vite-plugin-eslint';
-import requireTransform from 'vite-plugin-require-transform';
+// import requireTransform from 'vite-plugin-require-transform';
 const fs = require('fs');
 
 const otherPlugins = [];
@@ -86,19 +86,6 @@ export default defineConfig({
             },
         },
         assetsDir: 'assets',
-
-        // terserOptions: {
-        //     compress: {
-        //         // warnings: false,
-        //         drop_console: true,  //打包时删除console
-        //         drop_debugger: true, //打包时删除 debugger
-        //         pure_funcs: ['console.log'],
-        //     },
-        //     output: {
-        //         // 去掉注释内容
-        //         comments: true,
-        //     },
-        // },
     },
     plugins: [
         // 分包
@@ -128,12 +115,12 @@ export default defineConfig({
                 {
                     name: 'react',
                     var: 'React',
-                    path: '//cdn-web.elelive.net/lib/react/17.0.2/react.production.min.js',
+                    path: '//cdn-web.elelive.net/lib/react/18.2.0/react.production.min.js',
                 },
                 {
                     name: 'react-dom',
                     var: 'ReactDOM',
-                    path: '//cdn-web.elelive.net/lib/react-dom/17.0.2/react-dom.production.min.js',
+                    path: '//cdn-web.elelive.net/lib/react-dom/18.2.0/react-dom.production.min.js',
                 },
                 {
                     name: 'mobx',
@@ -147,9 +134,9 @@ export default defineConfig({
             include: ['./src/**/*.js', './src/**/*.jsx', './src/**/*.ts', './src/**/*.tsx'],
             emitWarning: false,
         }),
-        requireTransform({
-            fileRegex: /.js$|.ts$|.jsx$|.tsx$/,
-        }),
+        // requireTransform({
+        //     fileRegex: /.js$|.ts$|.jsx$|.tsx$/,
+        // }),
         ...otherPlugins,
     ],
 });

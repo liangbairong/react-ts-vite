@@ -1,89 +1,103 @@
-import React, { memo, lazy, Suspense } from 'react';
+import React, { lazy, Suspense } from 'react';
+import { useLocation, useRoutes } from 'react-router-dom';
 import reactI18n from 'min-react-i18n';
-import { Switch, Route, withRouter } from 'react-router-dom';
-import appStore from '../stores/appStore';
-// @ts-ignore
 import { Helmet } from 'react-helmet';
-
+import Loading from 'elelive-ui/es/Components/Loading';
+import 'elelive-ui/es/Components/Loading/index.css';
+import appStore from '../stores/appStore';
 /* 页面 */
-{
-    /*TODO:ios11报错*/
-}
-// const Index = lazy(() => import('../pages/index/index'));
-import Index from '../pages/index/index';
-import Community from '../pages/community/index';
+const Index = lazy(() => import('../pages/index/index'));
+/* 首页挂件 */
+const Community = lazy(() => import('../pages/community/index'));
 
-const routesConfig = [
+interface MetaProps {
+    name: string;
+    content: string;
+}
+
+interface IRoutesConfig {
+    path: string;
+    element: React.ReactNode;
+    exact?: boolean;
+    fallback?: boolean;
+    title?: string;
+    meta?: MetaProps[] | any;
+}
+
+interface RenderHelmetProps {
+    title?: string;
+    meta?: MetaProps[] | any;
+}
+
+const defaultRouterConfig = {
+    path: '/',
+    element: <Index />,
+    exact: true,
+    fallback: false,
+    title: 'index',
+    meta: [
+        {
+            name: 'viewport',
+            content: 'width=750, user-scalable=no',
+        },
+    ],
+};
+
+const routesConfig: IRoutesConfig[] = [
     {
         path: '/',
-        component: Index,
+        element: <Index />,
         exact: true,
+        fallback: false,
         title: 'VJLevel',
+        // meta: [
+        //     {
+        //         name: 'viewport',
+        //         content: 'width=750, user-scalable=no',
+        //     },
+        // ],
     },
     {
-        path: '/home',
-        component: Index,
-        exact: true,
+        path: '/index',
         title: 'VJLevel',
+        element: <Index />,
     },
     {
         path: '/community',
-        component: Community,
-        exact: true,
-        title: 'xx',
+        title: 'VJLevel',
+        element: <Community />,
     },
-];
+].map((customRoutesConfig) => ({ ...defaultRouterConfig, ...customRoutesConfig }));
 
-type IPropsAreEqual = {
-    path: string;
-};
-
-type IRouteWithSubRoutes = {
-    path?: string;
-    routes?: object;
-    component?: any;
-    title?: string;
-    fallback?: boolean;
-};
-
-export const RouteWithSubRoutesFn: React.FC<IRouteWithSubRoutes> = (route: IRouteWithSubRoutes): JSX.Element => {
-    const { path = '', routes, title, fallback = true } = route;
+// render helmet
+const RenderHelmet: React.FC<RenderHelmetProps> = ({ meta = [], title }) => {
+    console.log('-----1111----');
+    console.log(title);
     return (
-        <Route
-            path={path}
-            render={({ staticContext, ...props }) => (
-                // pass the sub-routes down to keep nesting
-                <>
-                    <Helmet>{title && <title>{title !== '' && reactI18n.get(title)}</title>}</Helmet>
-                    {/*TODO:ios11报错*/}
-                    {/*<Suspense fallback={<Loading open={fallback} fullScreen />}>*/}
-                    {/*    <route.component {...props} routes={routes} />*/}
-                    {/*</Suspense>*/}
-                    <route.component {...props} routes={routes} />
-                </>
-            )}
-        />
+        <Helmet>
+            {/*{meta.map(({ name, content }, index) => (*/}
+            {/*    <meta key={index} name={name} content={content} />*/}
+            {/*))}*/}
+            <title>{title ? reactI18n.get(title) : 'Elelive'}</title>
+        </Helmet>
     );
 };
 
-export const RouteWithSubRoutes = memo(
-    RouteWithSubRoutesFn,
-    // @ts-ignore
-    (prevProps: IPropsAreEqual, nextProps: IPropsAreEqual) => prevProps.path === nextProps.path,
-);
+// render route
+const RoutesComponents = () => {
+    const location = useLocation();
+    const items = routesConfig.find((item) => item.path === location.pathname);
+    const { fallback, meta, title } = items || {};
+    const element = useRoutes(routesConfig);
 
-const Routes = withRouter(({ location }) => {
     appStore.updateAppUrl(location.search);
 
     return (
-        <Switch>
-            {routesConfig
-                .filter((item) => item.path === location.pathname)
-                .map((route, i) => (
-                    <RouteWithSubRoutes key={i} {...route} />
-                ))}
-        </Switch>
+        <>
+            <RenderHelmet meta={meta} title={title} />
+            <Suspense fallback={<Loading open={fallback} fullScreen />}>{element}</Suspense>
+        </>
     );
-});
+};
 
-export default Routes;
+export default RoutesComponents;
