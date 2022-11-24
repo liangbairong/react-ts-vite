@@ -24,3 +24,6 @@ dist-ssr
 *.sw?
 artifact
 src/public/images/**/*.webp
+
+env.json
+*/env.json

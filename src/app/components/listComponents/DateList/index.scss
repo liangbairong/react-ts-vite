@@ -1,0 +1,59 @@
+// 日期
+$date-H: evw(60);
+
+.date {
+    color: #fff;
+    overflow: hidden;
+    position: relative;
+    z-index: 1;
+    height: $date-H;
+    font-size: evw(24);
+    margin-bottom: evw(32);
+    box-shadow: 0px 0px evw(12) 0px rgba(123,41,251,0.59);
+    border: evw(2) solid #7A4CFF;
+    background: #1F005A;
+    border-radius: evw(30);
+
+    .date-ul {
+        box-sizing: content-box;
+        display: flex;
+        align-items: center;
+        flex-wrap: nowrap;
+        height: 100%;
+        overflow: hidden;
+        overflow-x: auto;
+        -webkit-transform: translate3d(0, 0, 0);
+        padding-bottom: evw(15);
+    }
+
+    .date-li {
+        flex: none;
+        width: evw(114);
+        height: $date-H;
+        box-sizing: border-box;
+        text-align: center;
+        position: relative;
+        font-size: evw(24);
+        font-weight: 600;
+        border-radius: evw(30);
+
+        span {
+            @extend .acc;
+            display: block;
+            width: 100%;
+        }
+    }
+
+    .date-li-action {
+        @include bg('common/time-action','png');
+        background-size: 100% 100%;
+
+        span {
+            color: #fff;
+        }
+    }
+
+    .date-li-not {
+        color: #ffffff4d;
+    }
+}

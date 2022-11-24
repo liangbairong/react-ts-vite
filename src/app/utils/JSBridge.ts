@@ -1,6 +1,7 @@
 // app jsbridge（app客户端交互事件）
 
 import appStore from '../stores/appStore';
+import { CheckVersion } from '../utils/index';
 
 interface IBuriedPointJson {
     accessor_id?: string;
@@ -12,6 +13,7 @@ interface IBuriedPointJson {
 const JSBridge = {
     //跳转app登录
     toAppLogin: function () {
+        console.log('toAppLogin');
         try {
             if (window.YWJSBridge) window.YWJSBridge.login();
         } catch (err) {
@@ -307,6 +309,91 @@ const JSBridge = {
                 window.webkit.messageHandlers.ewnativeCookies.postMessage({
                     type: 'getAppHeaderInfo',
                     callBack: 'getAppHeaderInfo_callBack',
+                });
+            }
+        } catch (err) {
+            console.error('ios tocharge err', err);
+        }
+    },
+    // 分享
+    share: function (url: string, title: string, desc: string, imageURL: string, shareType: string) {
+        // const {AppVersion} = appStore.auth
+        // let temp: any = {}
+        // const v: string = AppVersion.replace(/\./g, '')
+        // if (Number(v) > Number('4.8.0'.replace(/\./g, ''))) {
+        //     temp = {
+        //         shareType
+        //     }
+        // }
+        // console.log('--share--')
+        // console.log(temp)
+        const flag = CheckVersion('4.8.0', appStore.auth?.AppVersion) < 0;
+        const temp = flag ? { shareType } : {};
+        try {
+            if (window.YWJSBridge) {
+                if (temp.shareType) {
+                    window.YWJSBridge.share(url, title, desc, imageURL, shareType);
+                } else {
+                    window.YWJSBridge.share(url, title, desc, imageURL);
+                }
+            }
+        } catch (err) {
+            console.error('Android tocharge err', err);
+        }
+        try {
+            if (window.webkit) {
+                window.webkit.messageHandlers.ewnativeCookies.postMessage({
+                    type: 'share',
+                    url,
+                    title,
+                    desc,
+                    imageURL,
+                    ...temp,
+                });
+            }
+        } catch (err) {
+            console.error('ios tocharge err', err);
+        }
+    },
+    // 复制
+    shearPlate(content: any) {
+        const data = JSON.stringify({
+            content,
+        });
+        try {
+            if (window.YWJSBridge) {
+                window.YWJSBridge.universalDataSend('shearPlate', data);
+            }
+        } catch (err) {
+            console.error('Android tocharge err', err);
+        }
+        try {
+            if (window.webkit) {
+                window.webkit.messageHandlers.ewnativeCookies.postMessage({
+                    type: 'universalDataSend',
+                    bizName: 'shearPlate',
+                    data: data,
+                });
+            }
+        } catch (err) {
+            console.error('ios tocharge err', err);
+        }
+    },
+    // 跳转APP路由
+    uriRoute(uri: string, checkLogin: boolean) {
+        console.log(`uriRoute ${uri} ${checkLogin}`);
+        try {
+            if (window.YWJSBridge) window.YWJSBridge.uriRoute(uri, checkLogin);
+        } catch (err) {
+            console.error('Android tocharge err', err);
+        }
+
+        try {
+            if (window.webkit) {
+                window.webkit.messageHandlers.ewnativeCookies.postMessage({
+                    type: 'uriRoute',
+                    uri: uri,
+                    checkLogin: checkLogin,
                 });
             }
         } catch (err) {

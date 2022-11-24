@@ -22,7 +22,8 @@
       "@Lib/*": ["./src/app/lib/*"],
       "@Context/*": ["./src/app/context/*"],
       "@Components/*": ["./src/app/components/*"],
-      "@Assets/*": ["./src/assets/*"]
+      "@Assets/*": ["./src/public/*"],
+      "@Hooks/*": ["./src/app/hooks/*"]
     }
   },
   "include": ["src"],

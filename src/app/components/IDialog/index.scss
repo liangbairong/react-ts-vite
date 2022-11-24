@@ -1,0 +1,56 @@
+.idialog-wrap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: evw(687);
+
+    .idialog-title {
+        width: 100%;
+        height: evw(68);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        bottom: evw(-4);
+        position: relative;
+        @include bg('dialog/title_bg','png');
+        background-repeat: no-repeat;
+        background-position: center center;
+        background-size: 100% 100%;
+        box-sizing: border-box;
+        font-size: evw(28);
+        padding-top: evw(12);
+        font-weight: 600;
+        color: #FBFFFF;
+        text-shadow: shadowTxtColor(#5800DB, 0.6);
+    }
+
+    .idialog-body {
+        width: evw(687);
+        height: evw(712);
+        overflow: hidden;
+        @include bg('dialog/body_bg','png');
+        background-repeat: no-repeat;
+        background-position: center center;
+        background-size: 100% 100%;
+        box-sizing: border-box;
+        padding: evw(20) evw(20);
+        > div {
+            width: 100%;
+            height: 100%;
+            overflow: scroll;
+            overflow-x: hidden;
+            border-radius: evw(20);
+        }
+    }
+
+    .idialog-cancel-btn {
+        margin-top: evw(48);
+        width: evw(62);
+        height: evw(62);
+        @include bg('dialog/close_btn','png');
+        background-repeat: no-repeat;
+        background-position: center center;
+        background-size: 100% 100%;
+    }
+}

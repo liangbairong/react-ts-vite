@@ -34,6 +34,12 @@ declare interface Window {
         new (): HTMLImageElement;
     };
     appPendantMsg: any;
+    appInitTrigger: any;
+    hiddenPendantBtnStatus: any;
+    appResultTrigger: any;
+    hiddenPendantButton: (resp: any) => any;
+    hiddenPendantStatus: (resp: any) => any;
+    appRefreshTrigger: (resp: any) => any;
     RedEventEmitter: any;
     ROOT_BASE: string;
     HTTP_BASE: string;

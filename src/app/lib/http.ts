@@ -1,16 +1,24 @@
-import useSWR from 'swr';
 import Toast from 'elelive-ui/es/Components/Toast';
 import appStore from '../stores/appStore';
 import queryString from 'query-string';
-// import axios from 'axios';
 
-interface IHttp {
+export interface IHttp {
     url: string | null;
     data?: any;
     method?: string;
     baseUrl?: string;
     noErrorToast?: boolean;
     dataType?: string;
+    returnType?: 'All' | 'Data' | string;
+    key?: string | null;
+}
+
+export interface IResponse<T = any> {
+    data: T;
+    msg: string;
+    status: number;
+    timestamp: number;
+    traceId: string;
 }
 
 const makeHeader = () => {
@@ -26,13 +34,11 @@ const makeHeader = () => {
     return Object.assign({ ...resp }, { 'Accept-Language': language || 'en', region });
 };
 
-export const http = (options: IHttp) => {
+export const http = <R = any>(options: IHttp): Promise<R> => {
     const method = options.method || 'get';
     const baseUrl = options.baseUrl || window.HTTP_BASE;
-    let url = options.url;
-    // let params: any = {
-    //     data: options.data,
-    // }
+    const returnType = options.returnType || 'Data';
+    let url: string = options.url || '';
     let params: any = {
         body: JSON.stringify(options.data),
     };
@@ -41,6 +47,7 @@ export const http = (options: IHttp) => {
         url = url + (stringData ? `?${stringData}` : '');
         params = {};
     }
+
     return fetch(baseUrl + url, {
         method,
         headers: Object.assign(
@@ -62,54 +69,14 @@ export const http = (options: IHttp) => {
             if (options.dataType === 'root') {
                 return data;
             }
+            if (data.timestamp) {
+                appStore.setTimestamp(data.timestamp);
+            }
+            if (returnType === 'Data') return data.data;
+            if (returnType === 'All') return data;
             return data.data;
-        });
-
-    // return axios(baseUrl + url, {
-    //     method,
-    //     headers: Object.assign({
-    //         'Content-Type': 'application/json',
-    //     }, makeHeader()),
-    //     ...params,
-    // }).then((res: any) => {
-    //     const data = res.data
-    //     if (data.status !== 200 && !options.noErrorToast) {
-    //         Toast.open({
-    //             content: data.msg,
-    //         });
-    //     }
-    //     if (options.dataType === 'root') {
-    //         return data
-    //     }
-    //     return data.data
-    // })
-};
-
-export const useFetch = (params: IHttp, options = {}) => {
-    const example = useSWR(params.url, () => http(params), {
-        revalidateIfStale: false,
-        revalidateOnFocus: false,
-        revalidateOnMount: true,
-        onSuccess: () => {
+        })
+        .finally(() => {
             appStore.setLoading(false);
-        },
-        onErrorRetry: (error, _key, _config, revalidate, { retryCount }) => {
-            // 404 时不重试。
-            if (error.status === 404) return;
-
-            // 特定的 key 时不重试。
-            // if (key === '/api/user') return
-
-            // 最多重试 3 次。
-            if (retryCount >= 3) return;
-
-            // 5秒后重试。
-            setTimeout(() => revalidate({ retryCount: retryCount }), 5000);
-        },
-        ...options,
-    });
-    return {
-        ...example,
-        isLoading: !example.error && !example.data,
-    };
+        });
 };

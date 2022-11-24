@@ -8,14 +8,15 @@ import reactI18n from 'min-react-i18n';
 interface TextProps {
     i18nKey: string;
     options?: Record<string, any>;
-    children?: string;
+    className?: string;
+    children?: string | React.ReactNode;
 }
-const Text: FC<TextProps> = ({ i18nKey, options = {}, children = '' }: TextProps): JSX.Element => {
+const Text: FC<TextProps> = ({ i18nKey, options = {}, className = '', children = '' }: TextProps): JSX.Element => {
     const [html, setHtml] = useState<any>('');
     useEffect(() => {
         setHtml(reactI18n.get(i18nKey, options) || children);
-    }, [i18nKey]);
-    return <span dangerouslySetInnerHTML={{ __html: html }} />;
+    }, [i18nKey, options]);
+    return <span className={className} dangerouslySetInnerHTML={{ __html: html }} />;
 };
 
 export default Text;

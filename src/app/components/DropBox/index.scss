@@ -1,0 +1,79 @@
+.drop-box {
+    position: relative;
+    .drop-text {
+        position: relative;
+        z-index: 12;
+        font-size: evw(24);
+        font-weight: 600;
+        color: #FFFFFF;
+        text-shadow: 0px evw(2) evw(2) rgba(26,0,255,0.46);
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .drop-list {
+        position: absolute;
+        width: evw(200);
+        background-color: rgba(0,0,0, 0.7);
+        border: evw(2) solid rgba(255,255,255, 0.7);
+        border-radius: evw(12);
+        z-index: 11;
+        top: evw(60);
+        right: evw(20);
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        transition: all 0.3s linear;
+        .triangle {
+            position: absolute;
+            width: 0;
+            height: 0;
+            border: evw(11) solid;
+            border-color: transparent transparent rgba(255,255,255, 0.7) transparent;
+            right: evw(20);
+            top: evw(-22);
+            &::before {
+                content: '';
+                position: absolute;
+                width: 0;
+                height: 0;
+                border: evw(10) solid;
+                border-color: transparent transparent rgba(0,0,0, 0.7) transparent;
+                right: evw(-9.8);
+                top: evw(-7);
+            }
+        }
+
+        > li {
+            width: 100%;
+            height: evw(60);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-bottom: evw(2) solid rgba($color: #5e86f2, $alpha: 0.3);
+            font-size: evw(20);
+            font-weight: 400;
+            color: #FFFFFF
+        }
+        li:last-child {
+            border-bottom: none;
+        }
+    }
+    .mask {
+        position: fixed;
+        z-index: 0;
+        width: 100vw;
+        height: 100vh;
+        background-color: transparent;
+        top: 0;
+        left: 0;
+    }
+}
+.show {
+    display: flex ;
+}
+.hidden {
+    display: none;
+}

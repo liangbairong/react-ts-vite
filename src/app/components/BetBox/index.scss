@@ -1,0 +1,104 @@
+.BetBox{
+  display: flex;
+  justify-content: space-between;
+  .BetBox-li{
+    //flex: 1;
+    width: evw(280);
+    .BetBox-li-box{
+      height: 100%;
+      min-height: evw(161);
+      background: linear-gradient(0deg, #6F20FF, #5F34FF);
+      @include bg('/quizPoints/bet_bg_min','png');
+      background-size: 100% 100%;
+      background-repeat: no-repeat;
+      border-radius: evw(10);
+      padding: evw(14);
+      box-sizing: border-box;
+      font-size: evw(24);
+      font-weight: 600;
+      text-align: center;
+      border: evw(4) solid transparent;
+      //box-sizing: border-box;
+      line-height: 1.5;
+      position: relative;
+      .BetBox-li-my{
+
+        .BetBox-li-my-box{
+          @extend .fac;
+          font-size: evw(18);
+          line-height: 1.3;
+          .BetBox-li-my-box-num{
+            font-weight: 600;
+            color: #30D7FD;
+          }
+          .BetBox-li-my-box-num2{
+            font-weight: 600;
+            color: #FF6FF0;
+          }
+        }
+      }
+
+
+      .BetBox-li-box-bonusTimes{
+        font-size: evw(22);
+      }
+
+
+      .BetBox-li-box-footer{
+        text-align: left;
+        margin-top: evw(5);
+        //min-height: evw(40);
+        .BetBox-li-box-buff{
+          height: evw(30);
+          line-height: 1;
+        }
+      }
+
+
+
+      .BetBox-li-box-tag{
+        background: rgba(48, 215, 253, 1);
+        position: absolute;
+        left: evw(-2);
+        top: evw(-2);
+        display: inline-block;
+        font-size: evw(18);
+        font-weight: 600;
+        padding: evw(4) evw(20);
+        border-radius: evw(10) 0 evw(10) 0;
+        line-height: 1;
+        text-shadow: shadowTxtColor(#0161FF, 1);
+      }
+      .BetBox-li-box-tag-flat{
+        background: #BDBDBD;
+        text-shadow: shadowTxtColor(#5D5D5D, 1);
+      }
+    }
+
+
+    .BetBox-li-box-len{
+      @include bg('/quizPoints/bet_bg','png');
+    }
+
+
+
+
+
+    .BetBox-li-box-result{
+      @extend .BetBox-li-box-action;
+    }
+
+    .BetBox-li-box-flat{
+      border-color: #BDBDBD;
+      box-shadow: 0 0 evw(30) inset #BDBDBD;
+    }
+
+    .BetBox-li-box-action{
+      border-color: rgba(48, 215, 253, 1);
+      box-shadow: 0 0 evw(30) inset rgba(48, 215, 253, 1);
+    }
+
+  }
+
+
+}

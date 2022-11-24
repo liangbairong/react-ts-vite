@@ -1,0 +1,64 @@
+.lists-item {
+    @extend .fcc;
+    height: evw(122);
+    box-sizing: border-box;
+    font-size: evw(26);
+
+    .lists-item-rank {
+        text-align: center;
+        width: evw(138);
+        flex-shrink: 0;
+        padding-right: evw(38);
+        font-weight: 700;
+    }
+
+    .lists-item-info {
+        display: flex;
+        align-items: center;
+        flex: 1 1;
+        overflow: hidden;
+
+        .lists-info-img {
+            flex-shrink: 0;
+            box-sizing: content-box;
+            position: relative;
+            width: evw(64);
+            height: evw(64);
+            border: evw(2) solid #FFF2D5;
+            background: #00198A;
+            border-radius: 50%;
+            margin-right: evw(13);
+
+            .lists-img {
+                width: evw(64);
+                height: evw(64);
+                border-radius: 50%;
+            }
+
+            .lists-live {
+                width: evw(68);
+                height: evw(68);
+                position: absolute;
+                left: evw(-2);
+                top: evw(-2);
+                z-index: 2;
+                @include bg('common/live','png');
+                background-size: 100% 100%;
+            }
+        }
+
+        .lists-info-name {
+            font-size: evw(24);
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            overflow: hidden;
+        }
+    }
+
+    .lists-item-integral {
+        color: #35D6FD;
+        flex-shrink: 0;
+        padding-left: evw(48);
+        padding-right: evw(33);
+    }
+}

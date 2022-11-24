@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react';
 import EntryApp from './model/EntryApp';
-import { AppContext } from './context';
-import appStore from './stores/appStore';
+import { AppContext, EventEmitterContext } from './context';
+import appStore from '@Stores/appStore';
+import eventEmitterStore from '@Stores/eventEmitterStore';
 import JSBridge from './utils/JSBridge';
 import './scss/base.scss';
 import './scss/index.scss';
@@ -16,7 +17,8 @@ const App: React.FC<IAppProps> = (): JSX.Element => {
     /* 获取授权信息 */
     const updateAuthInfo = () => {
         JSBridge.GetAppUserInfo((res: any) => {
-            console.log('Auth=======>', res);
+            console.log('GetAppUserInfo=======>');
+            console.log(res);
             appStore.updateAuthInfo(res);
         });
     };
@@ -35,8 +37,10 @@ const App: React.FC<IAppProps> = (): JSX.Element => {
         const isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1; // android终端
         if (isiOS) {
             document.body.classList.add('body-ios');
+            sessionStorage.setItem('mobilePlatform', 'ios');
         } else if (isAndroid) {
             document.body.classList.add('body-android');
+            sessionStorage.setItem('mobilePlatform', 'android');
         }
     };
 
@@ -57,7 +61,9 @@ const App: React.FC<IAppProps> = (): JSX.Element => {
 
     return (
         <AppContext.Provider value={appStore}>
-            <EntryApp />
+            <EventEmitterContext.Provider value={eventEmitterStore}>
+                <EntryApp />
+            </EventEmitterContext.Provider>
         </AppContext.Provider>
     );
 };

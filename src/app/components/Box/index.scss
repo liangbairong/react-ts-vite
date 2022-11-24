@@ -1,0 +1,34 @@
+.Box{
+  @extend .box;
+  width: evw(711);
+  margin: auto;
+  padding: evw(10);
+  position: relative;
+  .Box-title{
+    width: 100%;
+    @include bg('/quizPoints/title','png');
+    background-size: 100% 100%;
+    height: evw(68);
+    position: absolute;
+    top: evw(-72);
+    left: 0;
+    @extend .fcc;
+    font-size: evw(28);
+    font-weight: 600;
+    color: #FBFFFF;
+    line-height: evw(28);
+    padding-top: evw(6);
+    box-sizing: border-box;
+    text-shadow: shadowTxtColor(#5700DB, 0.6);
+  }
+}
+.Box-2{
+  box-sizing: border-box;
+  width: evw(688);
+  //border-color: transparent;
+  border: none;
+  box-shadow: 0 0 0 evw(4) RGBA(207, 151, 255, 1), 0 0 0 evw(10) RGBA(135, 82, 255, 1);
+  background: transparent;
+  @include bg('/quizPoints/pop_bg','png');
+  background-size: evw(300) auto;
+}

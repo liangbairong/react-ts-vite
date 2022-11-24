@@ -1,26 +1,112 @@
-.header{
-  height: evw(88);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: evw(32);
-  font-weight: 600;
-  color: #171717;
-  position: fixed;
-  top: 0;
-  width: 100%;
-  left: 0;
-  z-index: 9;
-  transition: all 0.1s;
-  .back{
-    position: absolute;
-    left: evw(16);
-    //top: 50%;
-    //transform: translateY(-50%);
-    width: evw(48);
-    height: evw(48);
-  }
-}
-.header-on{
-  background: #fff;
+
+
+.header {
+    height: evw(564);
+    position: relative;
+    z-index: 2;
+    box-sizing: border-box;
+    //height:evw(825);
+    //background: url($testImage)
+    &.onlyShowHeight {
+        height: 0;
+        padding-top: 0;
+    }
+
+    .header-logo {
+        position: absolute;
+        left: evw(22);
+        top: evw(22);
+        z-index: 999;
+
+        img {
+            width: evw(124);
+            height: evw(50);
+        }
+    }
+
+    .header-image-box {
+        position: relative;
+        width: 100%;
+        padding-top: evw(70);
+
+        overflow: hidden;
+
+        .header-image {
+            display: block;
+            margin: 0 auto;
+            height: evw(280);
+            width: 100%;
+        }
+
+    }
+
+    .header-btn-group {
+        position: absolute;
+        top: evw(30);
+        width: 100%;
+        height: evw(60);
+
+        .header-menu-left {
+            position: absolute;
+            right: 0;
+            z-index: 99;
+
+            .header-menu-item {
+                @extend .fcc;
+                width: auto;
+                width: evw(142);
+                height: evw(56);
+                margin-bottom: evw(10);
+                padding-left: evw(20);
+                @include bg('common/more_btn','png');
+                background-repeat: no-repeat;
+                background-position: center center;
+                background-size: 100% 100%;
+                box-sizing: border-box;
+
+                > div {
+                    position: relative;
+                    z-index: 20;
+                    width: 100%;
+                    height: 100%;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                }
+                span {
+                    position: relative;
+                    font-size: evw(24);
+                    font-weight: 600;
+                    color: #FFFFFF;
+                    text-shadow: 0px evw(2) evw(2) rgba(26,0,255,0.46);
+                    white-space:nowrap;
+                }
+                .introduce-img {
+                    width: 100%;
+                    height: 100%;
+                }
+
+            }
+            .more-list {
+                .drop-list {
+                    width: auto;
+                    min-width: evw(200);
+                    li {
+                        overflow: hidden;
+                        span {
+                            display: inline-block;
+                            width: 100%;
+                            padding: 0 evw(10);
+                            white-space: nowrap;
+                            box-sizing: border-box;
+                            font-weight: 400;
+                            text-align: center;
+                            line-height: 1;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
 }

@@ -1,0 +1,27 @@
+.progress {
+    background: #2F008B;
+    width: evw(348);
+    height: evw(32);
+    border-radius: evw(16);
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    position: relative;
+
+    .num-progress {
+        position: absolute;
+        font-size: evw(20);
+        font-weight: 400;
+        color: #FFFFFF;
+        left: evw(24);
+        text-shadow: 0px evw(1) evw(3) rgba(15,23,106,0.2);
+    }
+
+    .progress-bar {
+        width: 0;
+        height: 100%;
+        background: linear-gradient(0deg, #FFB25F, #FF723F);
+        border-radius: evw(16);
+        transition: all 0.6s linear;
+    }
+}

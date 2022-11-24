@@ -1,0 +1,23 @@
+.LangChangeIndex-box {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+
+  .elelive-langChange{
+    width: evw(160);
+
+    .lang-btn{
+      max-width: evw(160);
+      font-size: evw(20);
+    }
+
+    .lang-list{
+      .lang-item{
+        font-size: evw(20);
+      }
+    }
+  }
+}
+
+

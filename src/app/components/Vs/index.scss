@@ -1,0 +1,76 @@
+.vs {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: evw(280);
+  height:evw(160);
+  background: linear-gradient(180deg, #A247FF, #6C46FF);
+  border-radius: evw(10);
+  color: #fff;
+  font-weight: 600;
+  font-size: evw(24);
+  .vs-img {
+    width: evw(60);
+    height: evw(60);
+    border-radius: evw(60);
+    box-sizing: border-box;
+    border: evw(3) solid #fff;
+    display: inline-block;
+    overflow: hidden;
+    position: relative;
+    .vs-img-con{
+      width: auto;
+      height: 100%;
+      @extend .acc;
+    }
+  }
+  .vs-img-box{
+    width: evw(60);
+    height: evw(60);
+    border-radius: evw(60);
+    position: relative;
+    margin: auto;
+  }
+  .vs-selectState{
+    position: absolute;
+    bottom: evw(-5);
+    left: 50%;
+    transform: translateX(-50%);
+    width: evw(90);
+    height: evw(28);
+    font-size: evw(16);
+    font-weight: 600;
+    color: #FFFFFF;
+    text-align: center;
+    @include bg('/quizPoints/zbzc','png');
+    background-size: 100% 100%;
+    @extend .fcc;
+    @extend .oneHidden;
+    border-radius: evw(28);
+  }
+  .vs-name{
+    margin-top: evw(6);
+  }
+
+  .vs-li {
+    width: 40%;
+    text-align: center;
+    font-size: evw(18);
+    font-weight: 500;
+    line-height: 1.3;
+    position: relative;
+  }
+  .vs-li-vs{
+    padding-bottom: evw(35);
+  }
+  .vs-li-score{
+    padding-bottom: evw(35);
+    text-align: center;
+  }
+
+  .vs-li-action {
+    background: #8124ff;
+  }
+
+
+}

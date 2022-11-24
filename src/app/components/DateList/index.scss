@@ -1,0 +1,64 @@
+
+// 日期
+$tanabataDate-H: evw(66);
+
+.date-list {
+  width: evw(664);
+  overflow: hidden;
+  position: relative;
+  z-index: 1;
+  box-sizing: border-box;
+  margin: auto;
+  height: $tanabataDate-H;
+  @include bg('/quizPoints/time-bg','png');
+  background-size: 100% 100%;
+
+
+  .date-list-ul {
+    display: flex;
+    //padding: 0 evw(6);
+    padding-bottom: evw(15);
+    box-sizing: content-box;
+    flex-wrap: nowrap;
+    height: $tanabataDate-H;
+    border-radius: $tanabataDate-H;
+    overflow: hidden;
+    overflow-x: auto;
+    -webkit-transform: translate3d(0, 0, 0);
+    align-items: center;
+
+  }
+
+  .date-list-li {
+    //flex: 1;
+    flex: none;
+    width:evw(114);
+    height: evw(60);
+    box-sizing: border-box;
+    text-align: center;
+    position: relative;
+    font-size: evw(24);
+
+    span {
+      @extend .acc;
+      font-weight: 600;
+      display: block;
+      width: 100%;
+      color: rgba(255, 255, 255, 0.3);
+    }
+  }
+
+  .date-list-li-action {
+    @include bg('/quizPoints/time-action','png');
+    background-size: 100% 100%;
+    span {
+      font-weight: 600;
+      color: #fff;
+    }
+  }
+
+  .date-list-li-not {
+    color: #FFFFFF;
+    opacity: 0.5;
+  }
+}

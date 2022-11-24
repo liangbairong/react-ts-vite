@@ -1,0 +1,23 @@
+.status {
+    width: evw(240);
+    height: evw(240);
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: 100% 100%;
+}
+
+.no-start-status {
+    @include bg('/common/status_notStart', 'png');
+}
+
+.no-record-status {
+    @include bg('/common/status_noRecords', 'png');
+}
+
+.no-setl-status {
+    @include bg('/common/status_setl', 'png');
+}
+
+.no-fail-status {
+    @include bg('/common/status_startFail', 'png');
+}

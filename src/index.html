@@ -11,26 +11,44 @@
   <script>
     //兼容ios11
     this.globalThis || (this.globalThis = this)
-    // 隐藏头部
-    var hideAppHeader = function () {
-      try {
-        if (window.YWJSBridge) {
-          window.YWJSBridge.hideAppHeader()
+  </script>
+
+  <script>
+    window.appPendantMsg={}
+    window['appInitTrigger'] = function (res) {
+        console.log('--appInitTrigger--');
+        try{
+            window.appPendantMsg = eval(`(${res})`);
+        }catch(err){
+            console.log('appPendantMsg-报错');
+            window.appPendantMsg = JSON.parse(res)
         }
-      } catch (err) {
-        console.error('Android tocharge err', err)
-      }
-      try {
-        if (window.webkit) {
-          window.webkit.messageHandlers.ewnativeCookies.postMessage({
-            'type': 'hideAppHeader',
-          })
-        }
-      } catch (err) {
-        console.error('ios tocharge err', err)
-      }
+
+        console.log(window.appPendantMsg)
     }
-    hideAppHeader();
+
+    // 挂件按钮是否隐藏
+    window.hiddenPendantBtnStatus = {}
+    window.hiddenPendantBtnStatus.data = {}
+    window['hiddenPendantButton'] = function (res) {
+        console.log('--hiddenPendantButton--')
+        try {
+            window.hiddenPendantBtnStatus.data = eval(`(${res})`);
+        } catch (err) {
+            console.log('hiddenPendantBtnStatus-报错');
+        }
+        console.log(res);
+    };
+
+    // 挂件现在是否展开状态
+    window['hiddenPendantStatus'] = function (res) {
+        console.log('--hiddenPendantStatus--');
+        console.log(res);
+    }
+
+    window['appRefreshTrigger'] = function(res) {
+        console.log('--appRefreshTrigger--');
+    };
   </script>
 
   <%- testScript %>

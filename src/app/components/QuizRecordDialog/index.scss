@@ -1,0 +1,249 @@
+.QuizRecordDialog{
+    padding: evw(8) 0;
+    height: evw(808);
+
+  .AllRecord-no-box{
+    margin: evw(100) 0;
+  }
+  .AllRecord-load-more{
+    position: relative;
+    border-radius:0 0 evw(16) evw(16);
+    overflow: hidden;
+    &:after{
+      content: '';
+      display: block;
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      height: evw(55);
+      background: linear-gradient(0deg, #5F34FF 0%, rgba(95,52,255,0) 100%);
+    }
+  }
+    .AllRecord-list{
+
+
+
+      .AllRecord-list-li{
+        text-align: center;
+        background: linear-gradient(90deg, #5F34FF 0%, rgba(95,52,255,0) 100%);
+        @extend .fbc;
+        position: relative;
+        &:after{
+          content: '';
+          display: block;
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          width: 100%;
+          height: 1px;
+          background: linear-gradient(90deg, rgba(255,255,255,0.4), rgba(255,255,255,0));
+        }
+        .AllRecord-list-li-item1{
+          width: evw(270);
+          height: evw(168);
+          @extend .fcc;
+          background: #5F34FF;
+
+        }
+        .AllRecord-list-time{
+          font-size: evw(22);
+          font-weight: 600;
+          color: #FFDF4F;
+          margin-bottom: evw(15);
+          line-height: 1;
+        }
+
+
+        .AllRecord-list-player{
+          .AllRecord-list-player-img{
+            width: evw(60);
+            height: evw(60);
+            border-radius: evw(60);
+            box-sizing: border-box;
+            border: evw(3) solid #fff;
+            display: block;
+            margin: auto;
+          }
+          .AllRecord-list-player-name{
+            color: #fff;
+            margin-top: evw(6);
+
+          }
+        }
+
+        .AllRecord-list-li-item2{
+          width: evw(390);
+          text-align: left;
+          font-size: evw(22);
+          color: #FFFFFF;
+          line-height: 1.3;
+        }
+
+        .AllRecord-list-li-tit{
+          font-weight: 600;
+          color: rgba(255, 255, 255, 0.5);
+        }
+
+        .AllRecord-list-li-num{
+          color: rgba(48, 215, 253, 1);
+        }
+        .AllRecord-list-li-num2{
+          color: rgba(255, 111, 240, 1);
+        }
+
+      }
+
+
+
+    }
+  .AllRecord-list-succ{
+    width: evw(627);
+    margin: auto;
+    .AllRecord-list-succ-li{
+      background: linear-gradient(180deg, rgba(95, 52, 255, 1),rgba(95, 52, 255, 0));
+      border-radius: evw(20);
+      overflow: hidden;
+      .AllRecord-list-succ-li-top{
+        //height: evw(168);
+        background: #5F34FF;
+        @extend .fcc;
+        padding: evw(30) evw(20);
+        .AllRecord-list-time{
+          font-size: evw(22);
+          font-weight: 600;
+          color: rgba(255, 223, 79, 1);
+          text-align: center;
+          margin-bottom: evw(13);
+          .AllRecord-list-time-span{
+            color: #FFFFFF;
+          }
+        }
+      }
+
+      .SuccRecord-det-li{
+        text-align: center;
+        color: #FFFFFF;
+        font-size:evw(20);
+        padding: evw(24) evw(23);
+        position: relative;
+        &:after{
+          content: '';
+          background: linear-gradient(90deg, rgba(255,255,255,0),rgba(255,255,255,0.4), rgba(255,255,255,0));
+          width: 100%;
+          height: 1px;
+          position: absolute;
+          left: 0;
+          bottom: 0;
+        }
+        .SuccRecord-det-li-tit{
+          font-size: evw(24);
+          font-weight: 600;
+          margin-bottom: evw(8);
+          line-height: 1.2;
+        }
+        .SuccRecord-det-li-con{
+          font-size: evw(22);
+        }
+        .SuccRecord-det-li-row{
+          @extend .fbc;
+          line-height: 1.3;
+          &>div{
+            width: 50%;
+            text-align: left;
+          }
+          &>div:nth-child(2){
+            text-align: right;
+          }
+
+          .SuccRecord-det-li-row-num{
+            color: rgba(48, 215, 253, 1);
+          }
+          .SuccRecord-det-li-row-num2{
+            color: rgba(255, 111, 240, 1);
+          }
+          .SuccRecord-det-li-row-num3{
+            color: rgba(255, 223, 79, 1);
+          }
+        }
+
+        .SuccRecord-det-li-footer{
+          text-align: left;
+          margin-top: evw(10);
+        }
+      }
+
+
+      .SuccRecord-det-li-buff{
+        height: evw(32);
+      }
+    }
+  }
+
+
+
+
+  .SuccRecord-score{
+    display: flex;
+    justify-content: space-evenly;
+  }
+
+  .AllRecord-list-vs{
+    background: transparent;
+    height: auto;
+  }
+
+
+
+}
+
+
+
+.QuizRecordDialog-join{
+
+  background:RGBA(58, 0, 154, 1);
+}
+.lootDialogTab_tab-wrap{
+  height: evw(70);
+  width: evw(594);
+  margin:evw(25) auto;
+  @include bg('/quizPoints/dialog-tab-bg','png');
+  background-size: 100% 100%;
+
+  .elelive-tabs{
+    height: evw(70);
+    .elelive-tabs-li{
+      width: 50%;
+      height: evw(64);
+      flex: none;
+      span{
+        font-size: evw(24);
+        font-weight: 400;
+        color: rgba(255,255,255,0.3);
+        line-height: 1.3;
+        //text-shadow: 0px 2px 2px rgba(73,26,68,0.46);
+      }
+    }
+    .elelive-tabs-action{
+      background: transparent;
+      @include bg('/quizPoints/tab1','png');
+      background-size: 100% 100%;
+      background-position: center center;
+      background-repeat: no-repeat;
+      span{
+        color: #fff;
+        font-weight: 600;
+        font-size: evw(24);
+        text-shadow: shadowTxtColor(#005AFF, 0.6);
+      }
+    }
+    .elelive-tabs-action.elelive-tabs-li:nth-child(2){
+      @include bg('/quizPoints/tab2','png');
+      span{
+        text-shadow: shadowTxtColor(#B01398, 0.6);
+
+      }
+    }
+  }
+
+}

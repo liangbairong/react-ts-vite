@@ -1,0 +1,112 @@
+.SelectTeam{
+  background: rgba(0, 0, 0, 0.8);
+  position: absolute;
+  width: 100%;
+  top: 100%;
+  left: 0;
+  border-radius: 0 0 evw(16) evw(16);
+  z-index: 9;
+  padding-bottom: evw(10);
+  .SelectTeam-list{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    padding:evw(20) evw(30);
+    overflow-y: auto;
+    max-height: evw(320);
+
+    .SelectTeam-list-li{
+      flex: none;
+      width: 50%;
+      //height: evw(300);
+      //background: #8E8E8E;
+      margin-bottom: evw(20);
+      display: flex;
+      align-items: center;
+      height: evw(90);
+      .SelectTeam-list-name{
+        width: evw(160);
+        padding-left: evw(18);
+        text-align: left;
+        font-size: evw(24);
+        font-weight: 600;
+      }
+      .SelectTeam-list-more{
+        width: evw(10);
+        height: evw(18);
+        vertical-align: middle;
+        margin-left: evw(20);
+      }
+    }
+
+
+
+
+
+  }
+
+  .SelectTeam-player-list{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    padding:evw(20) evw(20);
+    overflow-y: auto;
+    max-height: evw(320);
+    .SelectTeam-player-list-li{
+      width: evw(140);
+      text-align: center;
+      margin-bottom: evw(20);
+      .SelectTeam-player-list-li-name{
+        font-size: evw(24);
+        font-weight: 600;
+      }
+      .SelectTeam-player-list-li-img{
+
+      }
+    }
+  }
+
+  .SelectTeam-list-img{
+    width: evw(80);
+    height: evw(80);
+    border-radius: evw(80);
+    box-sizing: border-box;
+    border: evw(3) solid #fff;
+    overflow: hidden;
+    display: inline-block;
+    position: relative;
+    .SelectTeam-list-img-con{
+      height: 100%;
+      width: auto;
+      @extend .acc;
+    }
+  }
+
+  .SelectTeam-player-header{
+    height: evw(112);
+    background:rgba(23, 0, 90, 0.8);
+    .SelectTeam-player-avatar{
+      height: evw(112);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: auto;
+      .SelectTeam-player-avatar-name{
+        width: evw(100);
+        text-align: left;
+        margin-left: evw(20);
+        font-size: evw(24);
+        font-weight: 600;
+      }
+      .SelectTeam-player-back{
+        width: evw(10);
+        height: evw(14);
+        transform: rotate(180deg);
+        margin-right: evw(20);
+      }
+    }
+  }
+
+
+
+}

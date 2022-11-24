@@ -1,6 +1,7 @@
 import queryString from 'query-string';
 import { observable } from 'mobx';
 import { isPlainObject } from '@Utils/index';
+import api from '../lib/api';
 
 type IParams = {
     url?: string;
@@ -11,6 +12,7 @@ type IParams = {
     curTab?: string;
     selectTab?: string;
     regionType?: string;
+    path: string;
 };
 
 type IAuth = {
@@ -41,6 +43,8 @@ type IAppHeaderInfo = {
     bottomBarHeight: number; //底部导航栏高度
 };
 export interface IStore {
+    timestamp: number;
+    setTimestamp: (data: number) => void;
     i18n: any;
     loading: boolean;
     appHeaderInfo: IAppHeaderInfo;
@@ -49,6 +53,9 @@ export interface IStore {
     server: IServer;
     listsStyles: IListsProps;
     appSystemInfo: IAppSystemInfo;
+    anchorIdRegion: string | number | any;
+    isLogin: boolean;
+    setIsLogin: (value: boolean) => any;
     updateAuthInfo: (auth: Record<string, any>) => void;
     updateAppSystemInfo: (appSystemInfo: Record<string, any>) => void;
     updateAppUrl: (search: string) => void;
@@ -57,9 +64,15 @@ export interface IStore {
     setI18n: (data: any) => void;
     setLoading: (data: boolean) => void;
     setAppHeaderInfo: (data: IAppHeaderInfo) => void;
+    getAnchorRegion: (data: any) => void;
 }
 
 const appStore = observable<IStore>({
+    timestamp: 0,
+    setTimestamp(data) {
+        this.timestamp = data;
+        return this;
+    },
     i18n: {},
     setI18n(data) {
         this.i18n = data;
@@ -69,6 +82,11 @@ const appStore = observable<IStore>({
     loading: false,
     setLoading(state) {
         this.loading = state;
+        return this;
+    },
+    isLogin: false,
+    setIsLogin(value) {
+        this.isLogin = value;
         return this;
     },
 
@@ -85,6 +103,7 @@ const appStore = observable<IStore>({
         // region: '',
         // anchorId: '',
         lang: '',
+        path: '',
         // curTab: '',
     }, // 从url中获取的所有参数
 
@@ -94,7 +113,7 @@ const appStore = observable<IStore>({
         deviceId: '',
         uid: '',
         AppVersion: '',
-        region: 'XM',
+        region: '',
         nickName: '',
     },
 
@@ -107,6 +126,8 @@ const appStore = observable<IStore>({
         titleBarHeight: 88,
         bottomBarHeight: 0,
     },
+
+    anchorIdRegion: '',
 
     setAppHeaderInfo(data) {
         const tempData: any = { ...data };
@@ -195,6 +216,13 @@ const appStore = observable<IStore>({
         if (isPlainObject(value)) {
             Object.assign(this.listsStyles, value);
         }
+        return this;
+    },
+
+    getAnchorRegion(params) {
+        api.getAnchorLiveRegion({ anchorId: params }).then((res) => {
+            this.anchorIdRegion = res;
+        });
         return this;
     },
 });

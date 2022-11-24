@@ -67,6 +67,21 @@ $basicColor: #61dcd8;
     text-overflow: ellipsis;
 }
 
+.btn-animation{
+    transform: scale(1);
+    transition: all 0.1s;
+    position: relative;
+    &:active{
+        transform: scale(0.95);
+    }
+}
+
+.oneHidden{
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap
+}
+
 // 文字多行截掉
 @mixin textHidden($num){
     display: flex;
@@ -75,7 +90,12 @@ $basicColor: #61dcd8;
     -webkit-line-clamp: $num; /* 要显示的行数 */
     -webkit-box-orient: vertical;
 }
-
+@function shadowTxtColor($color, $scale) {
+    @return calc(1px * $scale) calc(1px * $scale) 0 $color, calc(1px * $scale) calc(-1px * $scale) 0 $color, calc(-1px * $scale) calc(-1px * $scale) 0 $color, calc(-1px * $scale) calc(1px * $scale) 0 $color, calc(1px * $scale) calc(2px * $scale) 0 $color, calc(1px * $scale) calc(-2px * $scale) 0 $color, calc(-1px * $scale) calc(-2px * $scale) 0 $color, calc(-1px * $scale) calc(2px * $scale) 0 $color, calc(1px * $scale) calc(1px * $scale) 0 $color, calc(1px * $scale) calc(-1px * $scale) 0 $color, calc(-1px * $scale) calc(-1px * $scale) 0 $color, calc(-1px * $scale) calc(1px * $scale) 0 $color, calc(1px * $scale) calc(1px * $scale) 0 $color, calc(1px * $scale) calc(-1px * $scale) 0 $color, calc(-1px * $scale) calc(-1px * $scale) 0 $color, calc(-1px * $scale) calc(1px * $scale) 0 $color, calc(1px * $scale) 0px 0 $color, calc(1px * $scale) 0px 0 $color, calc(-1px * $scale) 0px 0 $color, calc(-1px * $scale) 0px 0 $color, calc(2px * $scale) calc(1px * $scale) 0 $color, calc(2px * $scale) calc(-1px * $scale) 0 $color, calc(-2px * $scale) calc(-1px * $scale) 0 $color, calc(-2px * $scale) calc(1px * $scale) 0 $color, calc(2px * $scale) calc(2px * $scale) 0 $color, calc(2px * $scale) calc(-2px * $scale) 0 $color, calc(-2px * $scale) calc(-2px * $scale) 0 $color, calc(-2px * $scale) calc(2px * $scale) 0 $color, calc(2px * $scale) calc(1px * $scale) 0 $color, calc(2px * $scale) calc(-1px * $scale) 0 $color, calc(-2px * $scale) calc(-1px * $scale) 0 $color, calc(-2px * $scale) calc(1px * $scale) 0 $color, calc(2px * $scale) calc(1px * $scale) 0 $color, calc(2px * $scale) calc(-1px * $scale) 0 $color, calc(-2px * $scale) calc(-1px * $scale) 0 $color, calc(-2px * $scale) calc(1px * $scale) 0 $color, calc(2px * $scale) 0px 0 $color, calc(2px * $scale) 0px 0 $color, calc(-2px * $scale) 0px 0 $color, calc(-2px * $scale) 0px 0 $color, calc(1px * $scale) calc(1px * $scale) 0 $color, calc(1px * $scale) calc(-1px * $scale) 0 $color, calc(-1px * $scale) calc(-1px * $scale) 0 $color, calc(-1px * $scale) calc(1px * $scale) 0 $color, calc(1px * $scale) calc(2px * $scale) 0 $color, calc(1px * $scale) calc(-2px * $scale) 0 $color, calc(-1px * $scale) calc(-2px * $scale) 0 $color, calc(-1px * $scale) calc(2px * $scale) 0 $color, calc(1px * $scale) calc(1px * $scale) 0 $color, calc(1px * $scale) calc(-1px * $scale) 0 $color, calc(-1px * $scale) calc(-1px * $scale) 0 $color, calc(-1px * $scale) calc(1px * $scale) 0 $color, calc(1px * $scale) calc(1px * $scale) 0 $color, calc(1px * $scale) calc(-1px * $scale) 0 $color, calc(-1px * $scale) calc(-1px * $scale) 0 $color, calc(-1px * $scale) calc(1px * $scale) 0 $color, calc(1px * $scale) 0px 0 $color, calc(1px * $scale) 0px 0 $color, calc(-1px * $scale) 0px 0 $color, calc(-1px * $scale) 0px 0 $color, calc(1px * $scale) calc(1px * $scale) 0 $color, calc(1px * $scale) calc(-1px * $scale) 0 $color, calc(-1px * $scale) calc(-1px * $scale) 0 $color, calc(-1px * $scale) calc(1px * $scale) 0 $color, calc(1px * $scale) calc(2px * $scale) 0 $color, calc(1px * $scale) calc(-2px * $scale) 0 $color, calc(-1px * $scale) calc(-2px * $scale) 0 $color, calc(-1px * $scale) calc(2px * $scale) 0 $color, calc(1px * $scale) calc(1px * $scale) 0 $color, calc(1px * $scale) calc(-1px * $scale) 0 $color, calc(-1px * $scale) calc(-1px * $scale) 0 $color, calc(-1px * $scale) calc(1px * $scale) 0 $color, calc(1px * $scale) calc(1px * $scale) 0 $color, calc(1px * $scale) calc(-1px * $scale) 0 $color, calc(-1px * $scale) calc(-1px * $scale) 0 $color, calc(-1px * $scale) calc(1px * $scale) 0 $color, calc(1px * $scale) 0px 0 $color, calc(1px * $scale) 0px 0 $color, calc(-1px * $scale) 0px 0 $color, calc(-1px * $scale) 0px 0 $color, 0px calc(1px * $scale) 0 $color, 0px calc(-1px * $scale) 0 $color, 0px calc(-1px * $scale) 0 $color, 0px calc(1px * $scale) 0 $color, 0px calc(2px * $scale) 0 $color, 0px calc(-2px * $scale) 0 $color, 0px calc(-2px * $scale) 0 $color, 0px calc(2px * $scale) 0 $color, 0px calc(1px * $scale) 0 $color, 0px calc(-1px * $scale) 0 $color, 0px calc(-1px * $scale) 0 $color, 0px calc(1px * $scale) 0 $color, 0px calc(1px * $scale) 0 $color, 0px calc(-1px * $scale) 0 $color, 0px calc(-1px * $scale) 0 $color, 0px calc(1px * $scale) 0 $color, 0px 0px 0 $color, 0px 0px 0 $color, 0px 0px 0 $color, 0px 0px 0 $color, 0 0 0 $color;
+}
+@function shadowTxtColorFree($color, $size) {
+    @return calc($size * 1) calc($size * 1) 0 $color, calc($size * 1) calc($size * -1)  0 $color, calc($size * -1) calc($size * -1) 0 $color, calc($size * -1) calc($size * 1) 0 $color, calc($size * 1) calc($size * 2) 0 $color, calc($size * 1) calc($size * -2) 0 $color, calc($size * -1) calc($size * -2) 0 $color, calc($size * -1) calc($size * 2) 0 $color, calc($size * 1) calc($size * 1) 0 $color, calc($size * 1) calc($size * -1) 0 $color, calc($size * -1) calc($size * -1) 0 $color, calc($size * -1) calc($size * 1) 0 $color, calc($size * 1) calc($size * 1) 0 $color, calc($size * 1) calc($size * -1) 0 $color, calc($size * -1) calc($size * -1) 0 $color, calc($size * -1) calc($size * 1) 0 $color, calc($size * 1) 0 0 $color, calc($size * 1) 0 0 $color, calc($size * -1) 0 0 $color, calc($size * -1) 0 0 $color, calc($size * 2) calc($size * 1) 0 $color, calc($size * 2) calc($size * -1) 0 $color, calc($size * -2) calc($size * -1) 0 $color, calc($size * -2) calc($size * 1) 0 $color, calc($size * 2) calc($size * 2) 0 $color, calc($size * 2) calc($size * -2) 0 $color, calc($size * -2) calc($size * -2) 0 $color, calc($size * -2) calc($size * 2) 0 $color, calc($size * 2) calc($size * 1) 0 $color, calc($size * 2) calc($size * -1) 0 $color, calc($size * -2) calc($size * -1) 0 $color, calc($size * -2) calc($size * 1) 0 $color, calc($size * 2) calc($size * 1) 0 $color, calc($size * 2) calc($size * -1) 0 $color, calc($size * -2) calc($size * -1) 0 $color, calc($size * -2) calc($size * 1) 0 $color, calc($size * 2) 0 0 $color, calc($size * 2) 0 0 $color, calc($size * -2) 0 0 $color, calc($size * -2) 0 0 $color, calc($size * 1) calc($size * 1) 0 $color, calc($size * 1) calc($size * -1) 0 $color, calc($size * -1) calc($size * -1) 0 $color, calc($size * -1) calc($size * 1) 0 $color, calc($size * 1) calc($size * 2) 0 $color, calc($size * 1) calc($size * -2) 0 $color, calc($size * -1) calc($size * -2) 0 $color, calc($size * -1) calc($size * 2) 0 $color, calc($size * 1) calc($size * 1) 0 $color, calc($size * 1) calc($size * -1) 0 $color, calc($size * -1) calc($size * -1) 0 $color, calc($size * -1) calc($size * 1) 0 $color, calc($size * 1) calc($size * 1) 0 $color, calc($size * 1) calc($size * -1) 0 $color, calc($size * -1) calc($size * -1) 0 $color, calc($size * -1) calc($size * 1) 0 $color, calc($size * 1) 0 0 $color, calc($size * 1) 0 0 $color, calc($size * -1) 0 0 $color, calc($size * -1) 0 0 $color, calc($size * 1) calc($size * 1) 0 $color, calc($size * 1) calc($size * -1) 0 $color, calc($size * -1) calc($size * -1) 0 $color, calc($size * -1) calc($size * 1) 0 $color, calc($size * 1) calc($size * 2) 0 $color, calc($size * 1) calc($size * -2) 0 $color, calc($size * -1) calc($size * -2) 0 $color, calc($size * -1) calc($size * 2) 0 $color, calc($size * 1) calc($size * 1) 0 $color, calc($size * 1) calc($size * -1) 0 $color, calc($size * -1) calc($size * -1) 0 $color, calc($size * -1) calc($size * 1) 0 $color, calc($size * 1) calc($size * 1) 0 $color, calc($size * 1) calc($size * -1) 0 $color, calc($size * -1) calc($size * -1) 0 $color, calc($size * -1) calc($size * 1) 0 $color, calc($size * 1) 0 0 $color, calc($size * 1) 0 0 $color, calc($size * -1) 0 0 $color, calc($size * -1) 0 0 $color, 0 calc($size * 1) 0 $color, 0 calc($size * -1) 0 $color, 0 calc($size * -1) 0 $color, 0 calc($size * 1) 0 $color, 0 calc($size * 2) 0 $color, 0 calc($size * -2) 0 $color, 0 calc($size * -2) 0 $color, 0 calc($size * 2) 0 $color, 0 calc($size * 1) 0 $color, 0 calc($size * -1) 0 $color, 0 calc($size * -1) 0 $color, 0 calc($size * 1) 0 $color, 0 calc($size * 1) 0 $color, 0 calc($size * -1) 0 $color, 0 calc($size * -1) 0 $color, 0 calc($size * 1) 0 $color, 0 0 0 $color, 0 0 0 $color, 0 0 0 $color, 0 0 0 $color, 0 0 0 $color;
+}
 //挂件单位
 @function mvw($size){
     @return calc(100vw / 201) * $size;
@@ -85,3 +105,10 @@ $basicColor: #61dcd8;
     @return calc(100vw / 750) * $size;
 }
 
+.box{
+    box-sizing: border-box;
+    border: evw(6) solid #8752FF;
+    background: #340091;
+    border-radius: evw(20);
+    padding: evw(30);
+}

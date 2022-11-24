@@ -1,10 +1,22 @@
-
-declare module 'elelive-ui/es/Components/Img';
+declare module 'elelive-ui';
+declare module 'elelive-ui/es/Components/ActivityTime';
+declare module 'elelive-ui/es/Components/Avatar';
+declare module 'elelive-ui/es/Components/Calendar';
+declare module 'elelive-ui/es/Components/Carousel';
 declare module 'elelive-ui/es/Components/CountDown';
+declare module 'elelive-ui/es/Components/Dialog';
+declare module 'elelive-ui/es/Components/Dropdown';
+declare module 'elelive-ui/es/Components/Empty';
+declare module 'elelive-ui/es/Components/Dialog';
 declare module 'elelive-ui/es/Components/Img';
+declare module 'elelive-ui/es/Components/LangChange';
 declare module 'elelive-ui/es/Components/Loading';
-declare module 'elelive-ui/es/Components/Toast';
-declare module 'elelive-ui/es/Components/Skeleton';
+declare module 'elelive-ui/es/Components/LoadMore';
+declare module 'elelive-ui/es/Components/Pendant';
 declare module 'elelive-ui/es/Components/Progress';
+declare module 'elelive-ui/es/Components/Skeleton';
+declare module 'elelive-ui/es/Components/SwipeMenu';
+declare module 'elelive-ui/es/Components/TabMenu';
+declare module 'elelive-ui/es/Components/Toast';
 declare module 'elelive-ui/es/Components/Utils';
-
+declare module 'elelive-ui/es/Components/VapPlayer';

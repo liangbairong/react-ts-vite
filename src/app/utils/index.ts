@@ -16,6 +16,26 @@ export const onVisibilitychange = () => {
     document.addEventListener('visibilitychange', onVisibilitychangeFn);
 };
 
+export const filterParams = (searchArg = '', setArgKey = '', setArgValue = 0) => {
+    const temp: Record<string, any> = {};
+    const searchStr: string = searchArg || window.location.search;
+    const params: Record<string, any> = queryString.parse(searchStr);
+    for (const i in params) {
+        if (params[i]) {
+            if (Array.isArray(params[i]) && params[i].length > 0) {
+                temp[i] = params[i][0];
+            } else {
+                temp[i] = params[i];
+            }
+        }
+    }
+    // 设置单一url参数
+    if (setArgKey && setArgValue) {
+        temp[setArgKey] = setArgValue;
+    }
+    return queryString.stringify(temp);
+};
+
 export const convertMoneyUnit = (value: number, type?: any) => {
     // if(typeof value !== 'number'){
     //   throw new Error('arguments must be a Number!')
@@ -124,6 +144,12 @@ export function pxToVw(size: number) {
 export function plusVersion(url: string) {
     return url + '?v=' + import.meta.env.VITE_VERSION;
 }
+
+export function evalSelf(fn: any) {
+    const Fn = Function; // 一个变量指向Function，防止有些前端编译工具报错
+    return new Fn(`return ${fn}`)();
+}
+
 export function isIos() {
     const u = navigator.userAgent;
     return !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/);
@@ -133,4 +159,69 @@ export const isWx = () => {
     const u = navigator.userAgent;
     // @ts-ignore
     return u.toLowerCase().match(/MicroMessenger/i) == 'micromessenger';
+};
+
+export function isHuaWei() {
+    const u = navigator.userAgent.toLowerCase();
+    // @ts-ignore
+    return u.match(/huawei/i) == 'huawei' || u.match(/honor/i) == 'honor';
+}
+
+export const getUuid = () => {
+    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+        const r = (Math.random() * 16) | 0,
+            v = c == 'x' ? r : (r & 0x3) | 0x8;
+        return v.toString(16);
+    });
+};
+
+export function monitorValue(obj: any, key: string, handle: (val: any) => any) {
+    if (obj) {
+        Object.defineProperty(obj, key, {
+            set(newVal) {
+                handle(newVal);
+                return newVal;
+            },
+        });
+    } else {
+        console.error(`Params obj => ${obj}. obj is error.`);
+    }
+}
+
+export const formatNum = (num: string | number) => {
+    if (!num) return num;
+    let temp: number | string = num;
+    if (typeof temp === 'number') {
+        temp = temp.toString();
+    }
+    return parseFloat(temp).toLocaleString();
+};
+
+export const isVoid = (value: unknown) => value === undefined || value === null || value === '';
+// 封装一个回到底部或者顶部的函数
+export const scrollToPosition = (position: number) => {
+    // 使用requestAnimationFrame，如果没有则使用setTimeOut
+    if (!window.requestAnimationFrame) {
+        window.requestAnimationFrame = function (callback) {
+            return setTimeout(callback, 20);
+        };
+    }
+
+    // 获取当前元素滚动的距离
+    let scrollTopDistance = document.documentElement.scrollTop || document.body.scrollTop;
+
+    const smoothScroll = () => {
+        // 如果你要滚到顶部，那么position传过来的就是0，下面这个distance肯定就是负值。
+        const distance = position - scrollTopDistance;
+        // 每次滚动的距离要不一样，制造一个缓冲效果
+        scrollTopDistance = scrollTopDistance + distance / 5;
+        // 判断条件
+        if (Math.abs(distance) < 1) {
+            window.scrollTo(0, position);
+        } else {
+            window.scrollTo(0, scrollTopDistance);
+            requestAnimationFrame(smoothScroll);
+        }
+    };
+    smoothScroll();
 };

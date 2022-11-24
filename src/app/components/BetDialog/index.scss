@@ -1,0 +1,317 @@
+
+
+
+//下注弹窗
+.BetDialog {
+  text-align: center;
+  //height: evw(710);
+  box-sizing: border-box;
+  padding: 0;
+  .BetDialog-select{
+    font-size: evw(24);
+    color: #FFFFFF;
+    opacity: 0.5;
+  }
+  .BetDialog-bet-title{
+    font-size: evw(24);
+    color: #FFFFFF;
+  }
+  .BetDialog-title{
+    font-size: evw(28);
+    color: rgba(255, 223, 79, 0.99);
+    font-weight: 600;
+  }
+  .BetDialog-alone{
+    font-size: evw(22);
+    color: rgba(255,255,255,0.6);
+  }
+  .BetDialog-bonusTimes{
+    font-size: evw(20);
+    color: #FFFFFF;
+    margin-bottom: evw(10);
+  }
+
+  .BetDialog-plugin{
+    height: evw(50);
+    background:linear-gradient(90deg,rgba(95, 52, 255, 0), rgba(95, 52, 255, 0.2), rgba(95, 52, 255, 0));  ;
+    @extend .fcc;
+
+    font-size: evw(24);
+    color: rgba(255, 255, 255, 0.5);
+    //margin: evw(3) 0;
+  }
+
+  .way-list {
+    display: flex;
+    height: evw(60);
+    justify-content: center;
+    align-items: center;
+
+    .way-li {
+      flex: 1;
+      font-size: evw(24);
+      font-weight: 600;
+      color: #61dcd8;
+      .way-li-radio{
+        width: evw(24);
+        height: evw(24);
+        border: evw(2) solid #61dcd8;
+        border-radius: 50%;
+        display: inline-block;
+        vertical-align: middle;
+        margin-right: evw(10);
+        position: relative;
+        top: evw(-3);
+        box-sizing: border-box;
+        &:after{
+          content: '';
+          position: absolute;
+          left: 0;top: 0;
+          right: 0;
+          bottom: 0;
+          margin: auto;
+          width: evw(14);
+          height: evw(14);
+          border-radius: 50%;
+          background: #61dcd8;
+          display: none;
+        }
+      }
+    }
+    .way-li:nth-of-type(1){
+      color: #FF6FF0;
+      .way-li-radio{
+        border: evw(2) solid #FF6FF0;
+        &:after{
+          background: #FF6FF0;
+        }
+      }
+    }
+
+
+
+    .way-li-action {
+      //color: #61dcd8;
+      .way-li-radio{
+        //border-color: #61dcd8;
+        &:after{
+         display: block;
+        }
+      }
+    }
+  }
+
+  .control-input{
+    width: evw(530);
+    height: evw(80);
+    text-align: center;
+    background: none;
+    border: none;
+    @include bg('/quizPoints/input-bg','png');
+    background-size: 100% 100%;
+    //border: evw(2) solid RGBA(0, 218, 255, 1);
+    //background: RGBA(53, 36, 175, 1);
+    //border-radius: evw(15);
+    //box-shadow: 0 0 evw(40) inset RGBA(0, 218, 255, 1);
+    font-size: evw(28);
+    font-weight: 600;
+    color: #30D7FD;
+
+    &::-webkit-input-placeholder{
+      color: #30D7FD;
+    }
+  }
+
+  .control-input-action{
+    //border: evw(2) solid rgba(255, 111, 240, 1);
+    //box-shadow: 0 0 evw(40) inset rgba(255, 111, 240, 1);
+    color: rgba(255, 111, 240, 1);
+    @include bg('/quizPoints/input-bg-red','png');
+    &::-webkit-input-placeholder{
+      color: rgba(255, 111, 240, 1);
+    }
+  }
+
+  .way-gulp{
+    font-size: evw(20);
+    color: #FFFFFF;
+    margin: evw(7) 0;
+    padding:0 evw(20);
+    .way-gulp-num{
+      color: rgba(48, 215, 253, 1);
+    }
+  }
+
+  .way-card{
+    max-height: evw(250);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    ul{
+      li{
+        width: evw(627);
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+        height: evw(104);
+        background: rgba(95, 52, 255, 0.6);
+        border-radius: evw(20);
+        margin: auto;
+        margin-top: evw(20);
+        .way-card-buff{
+          width: evw(84);
+          height: evw(84);
+          @include bg('/quizPoints/stroke','png');
+          background-size: 100% 100%;
+          position: relative;
+          .way-card-buff-img{
+            position: absolute;
+            left: 0;top: 0;bottom: 0;
+            right: 0;
+            margin: auto;
+            height: evw(14);
+          }
+        }
+        .way-card-name{
+          width: evw(400);
+          text-align: left;
+          font-size: evw(24);
+          font-weight: 600;
+          color: #FFFFFF;
+        }
+      }
+    }
+
+  }
+
+
+  .BetDialog-footer {
+    display: flex;
+    gap: evw(20);
+    margin-top: evw(20);
+    padding-bottom: evw(20);
+    @extend .fcc;
+    .BetDialog-btn {
+      width: evw(274);
+      height: evw(81);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: evw(44);
+      font-size: evw(28);
+      font-weight: 600;
+      color: #FFFFFF;
+      background-repeat: no-repeat;
+      background-size: 100% 100%;
+      box-sizing: border-box;
+    }
+    .BetDialog-close-btn {
+      @include bg('quizPoints/bet-btn1','png');
+      text-shadow: shadowTxtColor(#1E54FF, 0.6);
+    }
+    .BetDialog-confirm-btn {
+      @include bg('quizPoints/bet-btn2','png');
+      text-shadow: shadowTxtColor(#AD0898, 0.6);
+    }
+  }
+
+
+}
+
+// 积分不足
+.Insufficient-points {
+  .ef-dialog {
+
+    .ef-dialog-tip {
+      font-size: evw(24);
+      color: #fff;
+      margin-top: evw(15);
+    }
+
+    .ef-dialog-content {
+      display: flex;
+      align-items: center;
+      padding: evw(10) evw(22);
+      background: #5f34ff99;
+      border-radius: evw(20);
+      margin: evw(60) 0;
+
+      .points-icon {
+        flex-shrink: 0;
+        @extend .fcc;
+        width: evw(84);
+        height: evw(84);
+        @include bg('/quizPoints/stroke','png');
+        background-size: 100% 100%;
+        margin-right: evw(22);
+
+        .points-icon-img {
+          width: evw(64);
+          height: evw(64);
+        }
+      }
+
+      .points-name {
+        text-align: left;
+        margin-right: auto;
+      }
+
+      .points-go {
+        margin: 0 evw(10);
+        text-align: right;
+        a{
+          color: #fff;
+        }
+      }
+    }
+  }
+}
+
+//钻石球不足 
+.Insufficient-ball {
+  .ef-dialog {
+
+    .ef-dialog-tip {
+      font-size: evw(24);
+      color: #fff;
+      margin-top: evw(15);
+    }
+
+    .ef-dialog-content {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      padding: evw(30) evw(44);
+      background: #5f34ff99;
+      border-radius: evw(20);
+      margin-top: evw(60);
+      margin-bottom: evw(180);
+      max-height: evw(300);
+      overflow-x: hidden;
+
+      .ball-item {
+        width: 33.33%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        .ball-icon {
+          overflow: hidden;
+          @extend .fcc;
+          width: evw(84);
+          height: evw(84);
+          @include bg('/quizPoints/stroke','png');
+          background-size: 100% 100%;
+          position: relative;
+
+          .ball-icon-img {
+            width: 80%;
+          }
+        }
+        .ball-name {
+          margin-top: evw(10);
+        }
+      }
+    }
+  }
+}

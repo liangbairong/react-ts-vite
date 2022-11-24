@@ -1,0 +1,56 @@
+.Prize{
+  //width: evw(193);
+  text-align: center;
+  margin: auto;
+  .Prize-img-box{
+    width: evw(193);
+    height: evw(193);
+    @include bg('/quizPoints/param-bg','png');
+    background-size: 100% 100%;
+    position: relative;
+    margin: auto;
+    .Prize-img{
+      width: evw(120);
+      height: evw(120);
+      //border-radius: evw(100);
+      @extend .acc;
+    }
+
+    .Prize-selectState{
+      position: absolute;
+      bottom: evw(-5);
+      left: 50%;
+      transform: translateX(-50%);
+      width: evw(80);
+      height: evw(32);
+      font-family: BebasNeue;
+      font-size: evw(24);
+      color: #FFFFFF;
+      text-align: center;
+      @include bg('/quizPoints/zbzc','png');
+      background-size: 100% 100%;
+      @extend .fcc;
+      @extend .oneHidden;
+      border-radius: evw(28);
+    }
+  }
+  .Prize-name{
+    margin-top: evw(10);
+    font-size: evw(24);
+    font-weight: 500;
+  }
+  .Prize-prize{
+    font-size: evw(24);
+    color: #FFFFFF;font-weight: 500;
+  }
+  .Prize-prize-text{
+    .i18n-active{
+      color: rgba(0, 203, 255, 1);
+    }
+  }
+  .Prize-out-prize{
+    font-size: evw(24);
+    font-weight: 500;
+    color: #FFD800;
+  }
+}

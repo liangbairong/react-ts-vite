@@ -1,0 +1,23 @@
+.TeamAvatar {
+  text-align: center;
+  .TeamAvatar-img {
+    width: evw(80);
+    height: evw(80);
+    border-radius: evw(80);
+    box-sizing: border-box;
+    border: evw(3) solid #fff;
+    overflow: hidden;
+    display: inline-block;
+    position: relative;
+    .TeamAvatar-img-con{
+      height: 100%;
+      width: auto;
+      @extend .acc;
+    }
+  }
+  .TeamAvatar-name{
+    font-size: evw(24);
+    font-weight: 600;
+    line-height: 1.3;
+  }
+}

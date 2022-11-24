@@ -1,0 +1,22 @@
+.lists-title {
+    @extend .fcc;
+    background-color: #5100D3;
+    border-radius: evw(4);
+    margin-bottom: evw(1);
+    height: evw(64);
+    font-size: evw(24);
+    margin-bottom: evw(12);
+
+    .lists-title-rank {
+        padding-left: evw(24);
+        width: evw(146);
+    }
+
+    .lists-title-name {
+        flex: 1;
+    }
+
+    .lists-title-integral {
+        padding-right: evw(33);
+    }
+}

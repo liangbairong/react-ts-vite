@@ -80,12 +80,13 @@ td {
     border: 0;
     text-size-adjust: none;
 }
-
-body {
+html,body{
     font-size: 14px;
     font-family: PingFang SC, 'Helvetica Neue', Helvetica, 'PingFang SC', 'Hiragino Sans GB',
-        'Microsoft YaHei', '\5FAE\8F6F\96C5\9ED1', SimSun, sans-serif;
+    'Microsoft YaHei', '\5FAE\8F6F\96C5\9ED1', SimSun, sans-serif;
     line-height: 1.5;
+}
+body {
     overflow-scrolling: touch;
 }
 
@@ -118,7 +119,9 @@ q::after {
 a img {
     border: none;
 }
-
+a{
+    text-decoration: none;
+}
 input,
 button,
 textarea,

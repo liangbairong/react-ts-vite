@@ -1,0 +1,15 @@
+.app-layout {
+    position: relative;
+    min-width: 100vw;
+    min-height: 100vh;
+    @include bg('common/page_bg','png');
+    background-repeat: no-repeat;
+    background-size: 100% auto;
+    box-sizing: border-box;
+    background-color: #17005a;
+    color: #fff;
+}
+
+.page-wrap {
+    padding: 0 evw(20) evw(50);
+}

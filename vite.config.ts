@@ -9,7 +9,7 @@ import importToCDN from 'vite-plugin-cdn-import';
 import autoprefixer from 'autoprefixer';
 import { webpPlugins, publicScss } from './config/webp';
 import viteEslint from 'vite-plugin-eslint';
-// import requireTransform from 'vite-plugin-require-transform';
+// eslint-disable-next-line @typescript-eslint/no-var-requires,no-undef
 const fs = require('fs');
 
 const otherPlugins = [];
@@ -17,13 +17,41 @@ const otherPlugins = [];
 const initLoading = fs.readFileSync(join(__dirname, 'config/initLoading.html')).toString();
 const testCode = process.env.TYPE !== 'production' ? fs.readFileSync(join(__dirname, 'config/testCode.html')).toString() : '';
 
-const version = Date.now();
-const fd = fs.openSync(join(__dirname, 'src/.env'), 'w');
-fs.writeFileSync(fd, 'VITE_VERSION=' + version, 'utf8');
-fs.closeSync(fd);
-
 if (webpPlugins) {
     otherPlugins.push(webpPlugins);
+}
+if (process.env.TYPE !== 'dev') {
+    const buildPlugin = [
+        // 分包
+        splitVendorChunkPlugin(),
+        legacy({
+            targets: ['ie >= 11'],
+            additionalLegacyPolyfills: ['regenerator-runtime/runtime'],
+            polyfills: ['es.promise.finally', 'es/map', 'es/set'],
+            modernPolyfills: ['es.promise.finally'],
+        }),
+        minifyHtml(),
+        importToCDN({
+            modules: [
+                {
+                    name: 'react',
+                    var: 'React',
+                    path: '//cdn-web.elelive.net/lib/react/18.2.0/react.production.min.js',
+                },
+                {
+                    name: 'react-dom',
+                    var: 'ReactDOM',
+                    path: '//cdn-web.elelive.net/lib/react-dom/18.2.0/react-dom.production.min.js',
+                },
+                {
+                    name: 'mobx',
+                    var: 'mobx',
+                    path: '//cdn-web.elelive.net/lib/mobx/6.3.2/mobx.umd.production.min.js',
+                },
+            ],
+        }),
+    ];
+    otherPlugins.push(...buildPlugin);
 }
 
 let proxy = {};
@@ -67,8 +95,9 @@ export default defineConfig({
             '@Stores': resolve(__dirname, 'src/app/stores'),
             '@Components': resolve(__dirname, 'src/app/components'),
             '@Context': resolve(__dirname, 'src/app/context'),
-            '@Assets': resolve(__dirname, 'src/assets'),
+            '@Assets': resolve(__dirname, 'src/public'),
             '@Lib': resolve(__dirname, 'src/app/lib'),
+            '@Hooks': resolve(__dirname, 'src/app/hooks/'),
         },
     },
     esbuild: {
@@ -88,46 +117,18 @@ export default defineConfig({
         assetsDir: 'assets',
     },
     plugins: [
-        // 分包
-        splitVendorChunkPlugin(),
         react(),
         viteMockServe({
             mockPath: './src/mock',
             localEnabled: process.env.TYPE === 'mock',
             // prodEnabled: true,
         }),
-        legacy({
-            targets: ['ie >= 11'],
-            additionalLegacyPolyfills: ['regenerator-runtime/runtime'],
-            polyfills: ['es.promise.finally', 'es/map', 'es/set'],
-            modernPolyfills: ['es.promise.finally'],
-        }),
         injectHtml({
             data: {
                 initLoading,
-                injectScript: process.env.VCONSOLE ? '<script src="//cdn.bootcdn.net/ajax/libs/vConsole/3.9.1/vconsole.min.js"></script><script>new VConsole()</script>' : '',
+                injectScript: process.env.VCONSOLE ? '<script src="//cdn.bootcdn.net/ajax/libs/vConsole/3.15.0/vconsole.min.js"></script><script>new VConsole()</script>' : '',
                 testScript: testCode,
             },
-        }),
-        minifyHtml(),
-        importToCDN({
-            modules: [
-                {
-                    name: 'react',
-                    var: 'React',
-                    path: '//cdn-web.elelive.net/lib/react/18.2.0/react.production.min.js',
-                },
-                {
-                    name: 'react-dom',
-                    var: 'ReactDOM',
-                    path: '//cdn-web.elelive.net/lib/react-dom/18.2.0/react-dom.production.min.js',
-                },
-                {
-                    name: 'mobx',
-                    var: 'mobx',
-                    path: '//cdn-web.elelive.net/lib/mobx/6.3.2/mobx.umd.production.min.js',
-                },
-            ],
         }),
         viteEslint({
             failOnError: true,

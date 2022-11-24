@@ -10,16 +10,5 @@ Utils.supportsWebp(window).then((res: boolean) => {
         document.body.classList.add('webp');
     }
 });
-//
-// ReactDOM.render(<App />, document.getElementById('app'));
-//
 
-// @ts-ignore
-// const root = createRoot(document.getElementById('app'));
-// root.render(<App />);
-
-ReactDOM.createRoot(document.getElementById('app') as HTMLElement).render(
-    <React.StrictMode>
-        <App />
-    </React.StrictMode>,
-);
+ReactDOM.createRoot(document.getElementById('app') as HTMLElement).render(<App />);
